@@ -3,13 +3,14 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ArtShopApi.Models
 {
-    public class PaintingContext : DbContext
+    public partial class PaintingContext : DbContext
     {
+        public PaintingContext() { }
         public PaintingContext(DbContextOptions<PaintingContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Painting> Paintings { get; set; } = null!;
+        public virtual DbSet<Painting> Paintings { get; set; }
     }
 }
