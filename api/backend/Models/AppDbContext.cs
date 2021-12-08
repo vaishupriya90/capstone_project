@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 
+
 namespace backend.Models
 {
     public partial class AppDbContext : DbContext

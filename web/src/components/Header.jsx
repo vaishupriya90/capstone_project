@@ -24,7 +24,7 @@ function Header(){
                 <Dropdown alignRight>
                     <Dropdown.Toggle variant='success'>     
                     <FaShoppingCart  color='white' fontSize='25px'/>
-                    <Badge bg="success">{9}</Badge>
+                    <Badge bg="success">{}</Badge>
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu style={{minWidth:350}}>
