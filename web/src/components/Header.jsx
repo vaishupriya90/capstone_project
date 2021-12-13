@@ -20,10 +20,10 @@ function Header() {
         <Navbar.Text className="search">
           <FormControl className="m-auto" style={{ width: 500 }} placeholder="Search for a product" />
         </Navbar.Text>
-        <Dropdown alignright>
+        <Dropdown align="end">
           <Dropdown.Toggle variant="success">
             <FaShoppingCart color="white" fontSize="25px" />
-            <Badge bg="success">{}</Badge>
+            <Badge bg="success">{0}</Badge>
           </Dropdown.Toggle>
 
           <Dropdown.Menu style={{ minWidth: 350 }}>

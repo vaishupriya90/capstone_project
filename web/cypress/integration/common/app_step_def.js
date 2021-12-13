@@ -12,10 +12,10 @@ Then('I see {string}', (label) => {
     .should('exist');
 });
 
-// Then('display the following projects', (datatable) => {
-//   datatable.hashes().forEach(({ project }) => {
-//     cy.get('body')
-//       .contains(project)
-//       .should('exist');
-//   });
-// });
+Then('display the following names of the paintings', (datatable) => {
+  datatable.hashes().forEach(({ name }) => {
+    cy.get('body')
+      .contains(name)
+      .should('exist');
+  });
+});
