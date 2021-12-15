@@ -13,5 +13,6 @@ namespace backend.Models
         }
 
         public virtual DbSet<Painting> Paintings { get; set; }
+        public virtual DbSet<CartItem> CartItems { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Badge, Container, Dropdown, FormControl, Nav, Navbar,
+  Badge, Container, FormControl, Nav, Navbar, Button,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
@@ -20,9 +20,9 @@ function Header() {
         <Navbar.Text className="search">
           <FormControl className="m-auto" style={{ width: 500 }} placeholder="Search for a product" />
         </Navbar.Text>
-        <Dropdown align="end">
+        {/* <Dropdown align="end">
           <Dropdown.Toggle variant="success">
-            <FaShoppingCart color="white" fontSize="25px" />
+            <Link to="/cart"><FaShoppingCart color="white" fontSize="25px" /></Link>
             <Badge bg="success">{0}</Badge>
           </Dropdown.Toggle>
 
@@ -30,7 +30,15 @@ function Header() {
             <span style={{ padding: 10 }}>cart is empty!</span>
           </Dropdown.Menu>
 
-        </Dropdown>
+        </Dropdown> */}
+
+        <Link to="/cart">
+          <Button align="end" variant="success">
+            <FaShoppingCart color="white" fontSize="25px" />
+            {' '}
+            <Badge bg="success">{0}</Badge>
+          </Button>
+        </Link>
       </Container>
 
     </Navbar>
