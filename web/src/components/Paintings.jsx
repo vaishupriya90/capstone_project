@@ -1,46 +1,23 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+/* eslint-disable no-unused-vars */
 import '../styles.css';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import SinglePainting from './SinglePainting';
+// Actions
+import { getPaintings as listPaintings } from '../redux/shopping/shopping-actions';
 
 const Paintings = () => {
-  const [error, setError] = useState(null);
-  const [paintings, setPaintings] = useState([]);
-  const [loadingState, setLoadingState] = useState(true);
+  const dispatch = useDispatch();
+
+  const getPaintings = useSelector((state) => state.getPaintings);
+  const { paintings, loaded, getError } = getPaintings;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get('https://localhost:5001/api/paintings');
-        setPaintings(data);
-      } catch (err) {
-        setError(err);
-      }
-      setLoadingState(false);
-    };
-
-    fetchData();
-  }, []);
-
-  if (loadingState) {
-    return (
-      <div>Loading</div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div>Oops! Could not fetch the list of paintings.</div>
-    );
-  }
+    dispatch(listPaintings());
+  }, [dispatch]);
 
   return (
-  // <ul>
-  //   {paintings.map(({ id, name }) => (
-  //     <li key={id}>{name}</li>
-  //   ))}
-  // </ul>
-
     <div className="productContainer">
       {
         paintings.map((painting) => (
