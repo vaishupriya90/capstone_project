@@ -1,27 +1,20 @@
-/* eslint-disable no-unused-vars */
 import '../styles.css';
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { connect } from 'react-redux';
+import { getPaintings } from '../redux/shopping/shopping-actions';
 
 import SinglePainting from './SinglePainting';
 // Actions
-import { getPaintings as listPaintings } from '../redux/shopping/shopping-actions';
 
-const Paintings = () => {
-  const dispatch = useDispatch();
-
-  const getPaintings = useSelector((state) => state.getPaintings);
-  const { paintings, loaded, getError } = getPaintings;
-
-  useEffect(() => {
-    dispatch(listPaintings());
-  }, [dispatch]);
-
+// eslint-disable-next-line react/prop-types
+const Paintings = ({ paintings, fetchPaintings }) => {
+  fetchPaintings();
   return (
     <div className="productContainer">
       {
+        // eslint-disable-next-line react/prop-types
         paintings.map((painting) => (
-          <SinglePainting painting={painting} />
+          <SinglePainting key={painting.id} painting={painting} />
         ))
 }
     </div>
@@ -29,4 +22,12 @@ const Paintings = () => {
   );
 };
 
-export default Paintings;
+const mapStateToProps = (state) => ({
+  paintings: state.shop.paintings,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchPaintings: () => dispatch(getPaintings()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Paintings);
