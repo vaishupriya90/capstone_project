@@ -2,7 +2,8 @@
 import React from 'react';
 import { Container, Card, Button } from 'react-bootstrap';
 
-const SinglePainting = ({ painting }) => (
+const SinglePainting = ({ painting, addToCart }) => (
+
   <div className="products">
     <Container className="mt-5">
       <Card style={{ width: '18rem' }}>
@@ -12,7 +13,7 @@ const SinglePainting = ({ painting }) => (
           <Card.Text>
             {painting.description}
           </Card.Text>
-          <Button variant="dark">Add to cart</Button>
+          <Button variant="dark" onClick={() => addToCart(painting.id, 1)}>Add to cart</Button>
         </Card.Body>
       </Card>
     </Container>
