@@ -35,9 +35,9 @@ test('renders a list of paintings', async () => {
   expect(await screen.getAllByRole('img')).toHaveLength(testData.length);
 });
 
-// // test('renders error if fetching the name of the painting fails', async () => {
-// //   const mockApi = new MockAdapter(axios);
-// //   mockApi.onGet(`${process.env.REACT_APP_BASE_API}/api/paintings`).reply(500);
-// //   render(<Provider store={store}><Paintings /></Provider>);
-// //   expect(await screen.findByText('Oops! Could not fetch the list of paintings.')).toBeInTheDocument();
-// // });
+test('renders error if fetching the name of the painting fails', async () => {
+  const mockApi = new MockAdapter(axios);
+  mockApi.onGet(`${process.env.REACT_APP_BASE_API}/api/paintings`).reply(500);
+  render(<Provider store={store}><Paintings /></Provider>);
+  expect(await screen.findByText('Oops! Could not fetch the list of paintings.')).toBeInTheDocument();
+});
