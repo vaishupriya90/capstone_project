@@ -1,18 +1,14 @@
 // import axios from 'axios';
 import * as actionTypes from './cart-types';
 
-export const addToCart = (id, qty) => (dispatch) => {
-  // const { data } = await axios.get(`${process.env.REACT_APP_BASE_API}/api/paintings/${id}`);
-
+export const addToCart = (painting, qty) => (dispatch) => {
   dispatch({
     type: actionTypes.ADD_TO_CART,
     payload: {
-      id,
+      painting,
       qty,
     },
   });
-
-  // localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems));
 };
 
 export const removeFromCart = (id) => (dispatch) => {
@@ -20,6 +16,4 @@ export const removeFromCart = (id) => (dispatch) => {
     type: actionTypes.REMOVE_FROM_CART,
     payload: { id },
   });
-
-  // localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems));
 };

@@ -10,7 +10,7 @@ const cartReducer = (state = initialState, action) => {
       return { ...state, cartItems: [...state.cartItems, action.payload] };
     case actionTypes.REMOVE_FROM_CART:
       // eslint-disable-next-line max-len
-      return { ...state, cartItems: state.cartItems.filter((c) => c.id !== action.payload.id) };
+      return { ...state, cartItems: state.cartItems.filter((c) => c.painting.id !== action.payload.id) };
     default:
       return state;
   }
