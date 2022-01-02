@@ -9,7 +9,7 @@ import SinglePainting from './SinglePainting';
 
 const Paintings = ({
   // eslint-disable-next-line react/prop-types
-  paintings, fetchPaintings, paintingsLoaded, addItemToCart, error, removeItemFromCart,
+  paintings, fetchPaintings, paintingsLoaded, addItemToCart, error, removeItemFromCart, cartItems,
 }) => {
   if (!paintingsLoaded) {
     fetchPaintings();
@@ -23,7 +23,7 @@ const Paintings = ({
         // eslint-disable-next-line react/prop-types
         paintings.map((painting) => (
           // eslint-disable-next-line max-len
-          <SinglePainting key={painting.id} painting={painting} addToCart={addItemToCart} error={error} removeFromCart={removeItemFromCart} />
+          <SinglePainting key={painting.id} painting={painting} addToCart={addItemToCart} error={error} removeFromCart={removeItemFromCart} cartItems={cartItems} />
         ))
 }
     </div>
@@ -35,12 +35,14 @@ const mapStateToProps = (state) => ({
   paintings: state.paintingList.paintings,
   paintingsLoaded: state.paintingList.loaded,
   error: state.paintingList.getError,
+  cartItems: state.cartItemList.cartItems,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPaintings: () => dispatch(getPaintings()),
-  addItemToCart: (id, qty) => dispatch(addToCart(id, qty)),
+  addItemToCart: (item, qty) => dispatch(addToCart(item, qty)),
   removeItemFromCart: (id) => dispatch(removeFromCart(id)),
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Paintings);

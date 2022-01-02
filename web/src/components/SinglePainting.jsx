@@ -2,8 +2,9 @@
 import React from 'react';
 import { Container, Card, Button } from 'react-bootstrap';
 
-const SinglePainting = ({ painting, addToCart, removeFromCart }) => (
-
+const SinglePainting = ({
+  painting, addToCart, removeFromCart, cartItems,
+}) => (
   <div className="products">
     <Container className="mt-5">
       <Card style={{ width: '18rem' }}>
@@ -13,8 +14,10 @@ const SinglePainting = ({ painting, addToCart, removeFromCart }) => (
           <Card.Text>
             {painting.description}
           </Card.Text>
-          <Button variant="dark" onClick={() => addToCart(painting.id, 1)}>Add to cart</Button>
-          <Button variant="outline-danger" onClick={() => removeFromCart(painting.id)}>Remove From Cart</Button>
+          {cartItems.some((p) => p.painting.id === painting.id) ? (<Button variant="outline-danger" onClick={() => removeFromCart(painting.id)}>Remove From Cart</Button>
+          ) : (<Button variant="dark" onClick={() => addToCart(painting, 1)}>Add to cart</Button>
+          )}
+
         </Card.Body>
       </Card>
     </Container>
