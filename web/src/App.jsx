@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable react/react-in-jsx-scope */
 import { Routes, Route } from 'react-router';
 import Header from './components/Header';
