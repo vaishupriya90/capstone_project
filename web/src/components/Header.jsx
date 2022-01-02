@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  Badge, Container, FormControl, Nav, Navbar, Button,
+  Badge, Container, FormControl, Nav, Navbar, Dropdown,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
@@ -21,25 +21,25 @@ export const Header = ({ cartItems }) => (
       <Navbar.Text className="search">
         <FormControl className="m-auto" style={{ width: 500 }} placeholder="Search for a product" />
       </Navbar.Text>
-      {/* <Dropdown align="end">
-          <Dropdown.Toggle variant="success">
-            <Link to="/cart"><FaShoppingCart color="white" fontSize="25px" /></Link>
-            <Badge bg="success">{0}</Badge>
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu style={{ minWidth: 350 }}>
-            <span style={{ padding: 10 }}>cart is empty!</span>
-          </Dropdown.Menu>
-
-        </Dropdown> */}
-
-      <Link to="/cart">
-        <Button align="end" variant="success">
-          <FaShoppingCart color="white" fontSize="25px" />
-          {' '}
+      <Dropdown align="end">
+        <Dropdown.Toggle variant="success">
+          <Link to="/cart"><FaShoppingCart color="white" fontSize="25px" /></Link>
           <Badge bg="success">{cartItems.length}</Badge>
-        </Button>
-      </Link>
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu style={{ minWidth: 350 }}>
+          <span style={{ padding: 10 }}>cart is empty!</span>
+        </Dropdown.Menu>
+
+      </Dropdown>
+
+      {/* {<Link to="/cart"> }
+      <Button align="end" variant="success">
+        <FaShoppingCart color="white" fontSize="25px" />
+        {' '}
+        <Badge bg="success">{cartItems.length}</Badge>
+      </Button>
+      { </Link> } */}
     </Container>
 
   </Navbar>
