@@ -5,4 +5,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
+.home {
+    display: flex;
+  }
 
