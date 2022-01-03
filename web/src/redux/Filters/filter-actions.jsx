@@ -1,6 +1,6 @@
 import * as actionTypes from './filter-types';
 
-export const sortByPice = (sortType) => (dispatch) => {
+export const sortByPrice = (sortType) => (dispatch) => {
   dispatch({
     type: actionTypes.SORT_BY_PRICE,
     payload: sortType,

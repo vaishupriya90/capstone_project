@@ -1,7 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Form } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { sortByPice, search } from '../redux/Filters/filter-actions';
 import '../styles.css';
 
 // eslint-disable-next-line react/prop-types
@@ -43,15 +41,4 @@ const Filters = ({ sort, sortFunction }) => (
   </div>
 );
 
-const mapToProps = (state) => ({
-  sort: state.filters.sort,
-  searchValue: state.filters.searchValue,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  sortFunction: (sortType) => dispatch(sortByPice(sortType)),
-  search: (searchValue) => dispatch(search(searchValue)),
-}
-
-);
-export default connect(mapToProps, mapDispatchToProps)(Filters);
+export default Filters;

@@ -6,8 +6,9 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
+import { search } from '../redux/Filters/filter-actions';
 
-export const Header = ({ cartItems }) => (
+export const Header = ({ cartItems, searchText }) => (
   <Navbar className="navbar" bg="dark" variant="dark" style={{ height: 80 }}>
     <Container>
       <Navbar.Brand>
@@ -19,7 +20,7 @@ export const Header = ({ cartItems }) => (
         </Nav.Link>
       </Nav>
       <Navbar.Text className="search">
-        <FormControl className="m-auto" style={{ width: 500 }} placeholder="Search for a product" />
+        <FormControl className="m-auto" style={{ width: 500 }} placeholder="Search for a product" onChange={(e) => searchText(e.target.value)} />
       </Navbar.Text>
       <Dropdown align="end">
         <Dropdown.Toggle variant="success">
@@ -47,6 +48,12 @@ export const Header = ({ cartItems }) => (
 
 const mapStateToProps = (state) => ({
   cartItems: state.cartItemList.cartItems,
+  searchValue: state.filters.searchValue,
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProp = (dispatch) => ({
+  searchText: (searchValue) => dispatch(search(searchValue)),
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProp)(Header);
