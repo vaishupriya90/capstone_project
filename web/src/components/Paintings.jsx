@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import getPaintings from '../redux/painting/painting-actions';
 import { addToCart, removeFromCart } from '../redux/cart/cart-actions';
 
+import Filters from './Filters';
 import SinglePainting from './SinglePainting';
 // Actions
 
@@ -18,7 +19,9 @@ const Paintings = ({
     return <div>Oops! Could not fetch the list of paintings.</div>;
   }
   return (
+
     <div className="productContainer">
+      <Filters />
       {
         // eslint-disable-next-line react/prop-types
         paintings.map((painting) => (
