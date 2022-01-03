@@ -7,13 +7,26 @@ const SinglePainting = ({
 }) => (
   <div className="products">
     <Container className="mt-5">
-      <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={painting.image} style={{ height: '15rem', padding: '1rem' }} />
+      <Card>
+        <Card.Img variant="top" src={painting.image} alt={painting.name} />
         <Card.Body>
-          <Card.Title>{painting.name}</Card.Title>
-          <Card.Text>
-            {painting.description}
-          </Card.Text>
+          <Card.Title>
+            {painting.name}
+          </Card.Title>
+
+          <Card.Subtitle style={{ paddingBottom: 10 }}>
+            {/* <span>$ {painting.price.split('.')[0]}</span> */}
+            <div>
+              {' '}
+              {painting.description}
+            </div>
+            <span>
+              $
+              {' '}
+              {Math.round(Math.random() * 100)}
+            </span>
+
+          </Card.Subtitle>
           {cartItems.some((p) => p.painting.id === painting.id) ? (<Button variant="outline-danger" onClick={() => removeFromCart(painting.id)}>Remove From Cart</Button>
           ) : (<Button variant="dark" onClick={() => addToCart(painting, 1)}>Add to cart</Button>
           )}
