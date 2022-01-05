@@ -66,6 +66,14 @@
     width: 30%;
     margin: 10px;
   }
+
+  .card {
+    width: 18rem;
+    height: 25rem;
+  }
+  .cardImage{
+    height: 15rem;
+  }
   
   .summary {
     width: 30%;
