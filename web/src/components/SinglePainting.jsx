@@ -7,8 +7,8 @@ const SinglePainting = ({
 }) => (
   <div className="products">
     <Container className="mt-5">
-      <Card>
-        <Card.Img variant="top" src={painting.image} alt={painting.name} />
+      <Card className="card">
+        <Card.Img className="cardImage" variant="top" src={painting.image} alt={painting.name} />
         <Card.Body>
           <Card.Title>
             {painting.name}
@@ -23,7 +23,7 @@ const SinglePainting = ({
             <span>
               $
               {' '}
-              {Math.round(Math.random() * 100)}
+              {painting.price}
             </span>
 
           </Card.Subtitle>

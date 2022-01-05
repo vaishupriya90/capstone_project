@@ -21,7 +21,10 @@ const Cart = ({ cartItems }) => (
               <Col md={2}>
                 <span>{prod.painting.name}</span>
               </Col>
-              <Col md={2}>$100</Col>
+              <Col md={2}>
+                $
+                {prod.painting.price}
+              </Col>
               <Col md={2}>
                 {/* <Form.Control
                     as="select"
