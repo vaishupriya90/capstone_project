@@ -7,8 +7,10 @@ import {
 } from 'react-bootstrap';
 import { AiFillDelete } from 'react-icons/ai';
 
+import { removeFromCart } from '../redux/cart/cart-actions';
+
 // eslint-disable-next-line react/prop-types
-const Cart = ({ cartItems }) => (
+const Cart = ({ cartItems, removeItemFromCart }) => (
   <div className="home">
     <div className="productContainer">
       <ListGroup>
@@ -46,6 +48,7 @@ const Cart = ({ cartItems }) => (
                 <Button
                   type="button"
                   variant="light"
+                  onClick={() => removeItemFromCart(prod.painting.id)}
                 >
                   <AiFillDelete fontSize="20px" />
                 </Button>
@@ -62,4 +65,8 @@ const mapStateToProps = (state) => ({
   cartItems: state.cartItemList.cartItems,
 });
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = (dispatch) => ({
+  removeItemFromCart: (id) => dispatch(removeFromCart(id)),
+
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
