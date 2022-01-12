@@ -35,17 +35,18 @@ const Paintings = ({
   };
   return (
 
-    <div className="productContainer">
+    <div className="home">
 
       <Filters sort={sortType} sortFunction={sortFunction} />
-
-      {
+      <div className="productContainer">
+        {
         // eslint-disable-next-line react/prop-types
         transformProducts().map((painting) => (
           // eslint-disable-next-line max-len
           <SinglePainting key={painting.id} painting={painting} addToCart={addItemToCart} error={error} removeFromCart={removeItemFromCart} cartItems={cartItems} />
         ))
-}
+        }
+      </div>
     </div>
 
   );

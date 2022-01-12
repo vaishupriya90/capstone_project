@@ -5,10 +5,10 @@ import { Container, Card, Button } from 'react-bootstrap';
 const SinglePainting = ({
   painting, addToCart, removeFromCart, cartItems,
 }) => (
-  <div className="products">
+  <div>
     <Container className="mt-5">
-      <Card className="card">
-        <Card.Img className="cardImage" variant="top" src={painting.image} alt={painting.name} />
+      <Card className="products">
+        <Card.Img className="productImage" variant="top" src={painting.image} alt={painting.name} />
         <Card.Body>
           <Card.Title>
             {painting.name}

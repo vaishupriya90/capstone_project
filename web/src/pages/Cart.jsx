@@ -3,6 +3,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { connect } from 'react-redux';
+import { useState, useEffect } from 'react';
 import {
   Button, ListGroup, Row, Col, Image, FormControl,
 } from 'react-bootstrap';
@@ -13,53 +14,74 @@ import { changeQuantity, removeFromCart } from '../redux/cart/cart-actions';
 // eslint-disable-next-line react/prop-types
 const Cart = ({
   cartItems, removeItemFromCart, changeItemQuantity,
-}) => (
-  <div className="home">
-    <div className="productContainer">
-      <ListGroup>
-        {cartItems.map((prod) => (
-          <ListGroup.Item key={prod.id}>
-            <Row>
-              <Col lg={2}>
-                <Image className="ListItemImage" src={prod.painting.image} alt={prod.painting.name} fluid rounded />
-              </Col>
-              <Col lg={2}>
-                <span>{prod.painting.name}</span>
-              </Col>
-              <Col lg={2}>
-                $
-                {prod.painting.price}
-              </Col>
+}) => {
+  const [total, setTotal] = useState();
 
-              <Col lg={2}>
-                <FormControl
-                  as="select"
-                  value={prod.qty}
-                  onChange={(e) => changeItemQuantity(prod.painting, e.target.value)}
-                >
-                  {[...Array(prod.painting.availableQuantity).keys()].map((x) => (
-                    <option key={x + 1}>{x + 1}</option>
-                  ))}
+  useEffect(() => {
+    const calculateTotal = cartItems.reduce((acc, curr) => acc + (curr.painting.price) * curr.qty, 0);
+    setTotal(calculateTotal);
+  }, [cartItems]);
+  return (
+    <div className="home">
+      <div className="productContainer">
+        <ListGroup>
+          {cartItems.map((prod) => (
+            <ListGroup.Item key={prod.id}>
+              <Row>
+                <Col md={2}>
+                  <Image className="ListItemImage" src={prod.painting.image} alt={prod.painting.name} fluid rounded />
+                </Col>
+                <Col md={4}>
+                  <span>{prod.painting.name}</span>
+                </Col>
+                <Col lg={2}>
+                  $
+                  {prod.painting.price}
+                </Col>
 
-                </FormControl>
-              </Col>
-              <Col lg={2}>
-                <Button
-                  type="button"
-                  variant="light"
-                  onClick={() => removeItemFromCart(prod.painting.id)}
-                >
-                  <AiFillDelete fontSize="20px" />
-                </Button>
-              </Col>
-            </Row>
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
+                <Col lg={2}>
+                  <FormControl
+                    as="select"
+                    value={prod.qty}
+                    onChange={(e) => changeItemQuantity(prod.painting, e.target.value)}
+                  >
+                    {[...Array(prod.painting.availableQuantity).keys()].map((x) => (
+                      <option key={x + 1}>{x + 1}</option>
+                    ))}
+
+                  </FormControl>
+                </Col>
+                <Col lg={2}>
+                  <Button
+                    type="button"
+                    variant="light"
+                    onClick={() => removeItemFromCart(prod.painting.id)}
+                  >
+                    <AiFillDelete fontSize="20px" />
+                  </Button>
+                </Col>
+              </Row>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+        <div className="filters summary">
+          <span>
+            Subtotal (
+            {cartItems.length}
+            ) Items
+          </span>
+          <span>
+            Total: $
+            {' '}
+            {total}
+          </span>
+          <Button type="button" disable={cartItems.length === 0}>Proceed To Checkout</Button>
+        </div>
+      </div>
     </div>
-  </div>
 
-);
+  );
+};
 
 const mapStateToProps = (state) => ({
   cartItems: state.cartItemList.cartItems,
@@ -71,4 +93,5 @@ const mapDispatchToProps = (dispatch) => ({
   changeItemQuantity: (painting, qty) => dispatch(changeQuantity(painting, qty)),
 
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
