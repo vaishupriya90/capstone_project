@@ -17,3 +17,13 @@ export const removeFromCart = (id) => (dispatch) => {
     payload: { id },
   });
 };
+
+export const changeQuantity = (painting, qty) => (dispatch) => {
+  dispatch({
+    type: actionTypes.CHANGE_QUANTITY,
+    payload: {
+      id: painting.id,
+      qty,
+    },
+  });
+};

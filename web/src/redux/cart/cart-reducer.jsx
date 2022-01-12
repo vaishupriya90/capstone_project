@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
 import * as actionTypes from './cart-types';
 
 const initialState = {
@@ -11,6 +13,9 @@ const cartReducer = (state = initialState, action) => {
     case actionTypes.REMOVE_FROM_CART:
       // eslint-disable-next-line max-len
       return { ...state, cartItems: state.cartItems.filter((c) => c.painting.id !== action.payload.id) };
+    case actionTypes.CHANGE_QUANTITY:
+      // eslint-disable-next-line max-len
+      return { ...state, cartItems: state.cartItems.filter((c) => (c.painting.id === action.payload.id ? (c.qty = action.payload.qty) : c.qty)) };
     default:
       return state;
   }
