@@ -3,12 +3,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   Badge, Container, FormControl, Nav, Navbar, Dropdown,
+  Button,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
+import { AiFillDelete } from 'react-icons/ai';
 import { search } from '../redux/Filters/filter-actions';
+import { removeFromCart } from '../redux/cart/cart-actions';
 
-export const Header = ({ cartItems, searchText }) => (
+export const Header = ({ cartItems, searchText, removeItemFromCart }) => (
   <Navbar className="navbar" bg="dark" variant="dark" style={{ height: 80 }}>
     <Container>
       <Navbar.Brand>
@@ -24,23 +27,47 @@ export const Header = ({ cartItems, searchText }) => (
       </Navbar.Text>
       <Dropdown align="end">
         <Dropdown.Toggle variant="success">
-          <Link to="/cart"><FaShoppingCart color="white" fontSize="25px" /></Link>
+          <FaShoppingCart color="white" fontSize="25px" />
           <Badge bg="success">{cartItems.length}</Badge>
         </Dropdown.Toggle>
 
-        <Dropdown.Menu style={{ minWidth: 350 }}>
-          <span style={{ padding: 10 }}>cart is empty!</span>
+        <Dropdown.Menu style={{ minWidth: 370 }}>
+          {cartItems.length > 0 ? (
+            <>
+              {cartItems.map((prod) => (
+                <span className="cartitem" key={prod.painting.id}>
+                  <img
+                    src={prod.painting.image}
+                    className="cartItemImg"
+                    alt={prod.painting.name}
+                  />
+                  <div className="cartItemDetail">
+                    <span>{prod.painting.name}</span>
+                    <span>
+                      $
+                      {' '}
+                      {prod.painting.price}
+                    </span>
+                  </div>
+                  <AiFillDelete
+                    fontSize="20px"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => removeItemFromCart(prod.painting.id)}
+                  />
+                </span>
+              ))}
+              <Link to="/cart">
+                <Button style={{ width: '95%', margin: '0 10px' }}>
+                  Go To Cart
+                </Button>
+              </Link>
+            </>
+          ) : (
+            <span style={{ padding: 10 }}>Cart is Empty!</span>
+          )}
         </Dropdown.Menu>
 
       </Dropdown>
-
-      {/* {<Link to="/cart"> }
-      <Button align="end" variant="success">
-        <FaShoppingCart color="white" fontSize="25px" />
-        {' '}
-        <Badge bg="success">{cartItems.length}</Badge>
-      </Button>
-      { </Link> } */}
     </Container>
 
   </Navbar>
@@ -53,6 +80,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProp = (dispatch) => ({
   searchText: (searchValue) => dispatch(search(searchValue)),
+  removeItemFromCart: (id) => dispatch(removeFromCart(id)),
 
 });
 
