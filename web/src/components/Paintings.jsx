@@ -9,6 +9,7 @@ import { sortByPrice, search } from '../redux/Filters/filter-actions';
 
 import Filters from './Filters';
 import SinglePainting from './SinglePainting';
+// import LoadingDisplay from './sharedComponents/LoadingDisplay';
 // Actions
 
 const Paintings = ({
@@ -16,11 +17,14 @@ const Paintings = ({
   // eslint-disable-next-line max-len
   paintings, fetchPaintings, paintingsLoaded, addItemToCart, error, removeItemFromCart, cartItems, sortType, sortFunction, searchValue,
 }) => {
+  // if (!paintingsLoaded) {
+  //   <LoadingDisplay />;
+  // }
   if (!paintingsLoaded) {
     fetchPaintings();
   }
   if (error) {
-    return <div>Oops! Could not fetch the list of paintings.</div>;
+    return <div>Oops! Could not fetch the list of paintings!</div>;
   }
 
   const transformProducts = () => {
@@ -59,6 +63,7 @@ const mapStateToProps = (state) => ({
   cartItems: state.cartItemList.cartItems,
   sortType: state.filters.sort,
   searchValue: state.filters.searchValue,
+
 });
 
 const mapDispatchToProps = (dispatch) => ({

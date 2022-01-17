@@ -1,10 +1,20 @@
 /* header styles */
 
+.homePage{
+  background-image: url("https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGFpbnRpbmclMjBzaG9wfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60");
+   min-height: 100vh;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
+
+}
+
 .header {
   display: block;
   text-align: center;
   font-size: 30px;
   margin: 10px 0;
+  background-color: coral;
 }
 
 .cartitem {
