@@ -73,10 +73,11 @@ export const Header = ({ cartItems, searchText, removeItemFromCart }) => {
 
         </Dropdown>
         {(isAuthenticated) ? (
-          <span>
+          <span style={{ color: 'white' }}>
             Welcome
             {' '}
             {user.name}
+            <Button>Log out</Button>
           </span>
         ) : (<LoginButton />)}
       </Container>

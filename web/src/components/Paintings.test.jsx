@@ -1,19 +1,8 @@
 import React from 'react';
-import axios from 'axios';
-import { Provider } from 'react-redux';
-import MockAdapter from 'axios-mock-adapter';
 import { render, screen } from '@testing-library/react';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
-// eslint-disable-next-line import/no-named-as-default
-import Paintings from './Paintings';
+import { Paintings } from './Paintings';
 
-import rootReducer from '../redux/rootReducer';
-
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
-
-const testData = [
+const testPaintings = [
   {
     id: 1,
     name: 'The Lonely Boat',
@@ -40,17 +29,31 @@ const testData = [
   },
 ];
 
+const renderTestObject = (customProps = {}) => {
+  const props = {
+    paintings: testPaintings,
+    fetchPaintings: jest.fn(),
+    paintingsLoaded: true,
+    addItemToCart: jest.fn(),
+    error: false,
+    removeItemFromCart: jest.fn(),
+    cartItems: [],
+    sortType: '',
+    sortFunction: jest.fn(),
+    searchValue: '',
+    ...customProps,
+  };
+
+  render(<Paintings {...props} />);
+};
+
 test('renders a list of paintings', async () => {
-  const mockApi = new MockAdapter(axios);
-  mockApi.onGet(`${process.env.REACT_APP_BASE_API}/api/paintings`).reply(200, testData);
-  render(<Provider store={store}><Paintings /></Provider>);
-  expect(await screen.findByText(testData[0].name)).toBeInTheDocument();
-  expect(screen.getAllByRole('img')).toHaveLength(testData.length);
+  renderTestObject();
+  expect(await screen.findByText(testPaintings[0].name)).toBeInTheDocument();
+  expect(screen.getAllByRole('img')).toHaveLength(testPaintings.length);
 });
 
 test('renders error if fetching the name of the painting fails', async () => {
-  const mockApi = new MockAdapter(axios);
-  mockApi.onGet(`${process.env.REACT_APP_BASE_API}/api/paintings`).reply(500);
-  render(<Provider store={store}><Paintings /></Provider>);
+  renderTestObject({ error: true });
   expect(await screen.findByText('Oops! Could not fetch the list of paintings!')).toBeInTheDocument();
 });
