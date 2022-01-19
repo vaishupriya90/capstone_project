@@ -1,21 +1,21 @@
 import * as actionTypes from './painting-types';
 
 const initialState = {
-  getError: null,
-  loaded: false,
+  error: null,
+  isLoading: false,
   paintings: [],
 };
 
 const paintingReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_PAINTINGS:
-      return { ...state, loaded: false, getError: null };
+      return { ...state, isLoading: true, error: null };
     case actionTypes.GOT_PAINTINGS:
       return {
-        ...state, paintings: action.payload, getError: null, loaded: true,
+        ...state, paintings: action.payload, error: null, isLoading: false,
       };
-    case actionTypes.GET_ERRORS:
-      return { ...state, getError: action.payload, loaded: true };
+    case actionTypes.GOT_PAINTINGS_ERROR:
+      return { ...state, error: action.payload, isLoading: false };
     default:
       return state;
   }

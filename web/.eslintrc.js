@@ -38,5 +38,9 @@ module.exports = {
         },
       },
     ],
+    'react/jsx-props-no-spreading': [
+      'error',
+      { custom: 'ignore' },
+    ],
   },
 };
