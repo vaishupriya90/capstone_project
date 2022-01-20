@@ -9,7 +9,8 @@ import {
 } from 'react-bootstrap';
 import { AiFillDelete } from 'react-icons/ai';
 
-import { changeQuantity, removeFromCart } from '../redux/cart/cart-actions';
+import { changeQuantity, removeFromCart } from '../redux/cart/cartSlice';
+import getCartItems from '../redux/cart/selectors';
 
 // eslint-disable-next-line react/prop-types
 const Cart = ({
@@ -55,7 +56,7 @@ const Cart = ({
                   <Button
                     type="button"
                     variant="light"
-                    onClick={() => removeItemFromCart(prod.painting.id)}
+                    onClick={() => removeItemFromCart(prod.painting)}
                   >
                     <AiFillDelete fontSize="20px" />
                   </Button>
@@ -84,12 +85,12 @@ const Cart = ({
 };
 
 const mapStateToProps = (state) => ({
-  cartItems: state.cartItemList.cartItems,
-  quantity: state.cartItemList.qty,
+  cartItems: getCartItems(state),
+  quantity: state.cartItems.qty,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  removeItemFromCart: (id) => dispatch(removeFromCart(id)),
+  removeItemFromCart: (painting) => dispatch(removeFromCart(painting)),
   changeItemQuantity: (painting, qty) => dispatch(changeQuantity(painting, qty)),
 
 });

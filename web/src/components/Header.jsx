@@ -58,7 +58,7 @@ export const Header = ({ cartItems, searchText, removeItemFromCart }) => {
                     <AiFillDelete
                       fontSize="20px"
                       style={{ cursor: 'pointer' }}
-                      onClick={() => removeItemFromCart(prod.painting.id)}
+                      onClick={() => removeItemFromCart(prod.painting)}
                     />
                   </span>
                 ))}
@@ -95,7 +95,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProp = (dispatch) => ({
   searchText: (searchValue) => dispatch(search(searchValue)),
-  removeItemFromCart: (id) => dispatch(removeFromCart(id)),
+  removeItemFromCart: (painting) => dispatch(removeFromCart(painting)),
 
 });
 
