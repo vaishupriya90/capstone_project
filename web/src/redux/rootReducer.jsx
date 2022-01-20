@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import cartReducer from './cart/cart-reducer';
-import paintingReducer from './painting/painting-reducer';
-import filterReducer from './Filters/filter-reducer';
+import cartReducer from './cart/cartSlice';
+import paintingsReducer from './paintings/paintingsSlice';
+import filtersReducer from './Filters/filter-reducer';
 
 const rootReducer = combineReducers({
-  paintingList: paintingReducer,
-  cartItemList: cartReducer,
-  filters: filterReducer,
+  paintings: paintingsReducer,
+  cartItems: cartReducer,
+  filters: filtersReducer,
 });
 
 export default rootReducer;
