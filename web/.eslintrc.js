@@ -22,6 +22,7 @@ module.exports = {
   },
   rules: {
     'import/no-extraneous-dependencies': ['error', { devDependencies: ['**/*.test.js', '**/*.test.jsx', '**/*_def.js', 'cypress/**/**'] }],
+    'no-param-reassign': ['error', { props: false }],
     'jsx-a11y/label-has-associated-control': [
       'warn',
       {

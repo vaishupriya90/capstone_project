@@ -10,7 +10,9 @@ import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { AiFillDelete } from 'react-icons/ai';
 import { search } from '../redux/Filters/filter-actions';
-import { removeFromCart } from '../redux/cart/cart-actions';
+import { removeFromCart } from '../redux/cart/cartSlice';
+import getCartItems from '../redux/cart/selectors';
+
 import LoginButton from './LoginButton';
 
 export const Header = ({ cartItems, searchText, removeItemFromCart }) => {
@@ -87,7 +89,7 @@ export const Header = ({ cartItems, searchText, removeItemFromCart }) => {
 };
 
 const mapStateToProps = (state) => ({
-  cartItems: state.cartItemList.cartItems,
+  cartItems: getCartItems(state),
   searchValue: state.filters.searchValue,
 });
 
