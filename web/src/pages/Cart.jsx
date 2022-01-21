@@ -91,7 +91,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   removeItemFromCart: (painting) => dispatch(removeFromCart(painting)),
-  changeItemQuantity: (painting, qty) => dispatch(changeQuantity(painting, qty)),
+  changeItemQuantity: (painting, quantity) => dispatch(changeQuantity(painting, quantity)),
 
 });
 

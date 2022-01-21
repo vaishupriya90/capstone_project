@@ -96,7 +96,7 @@ Paintings.propTypes = {
   cartItems: PropTypes.arrayOf(
     PropTypes.shape({
       painting: paintingPropType,
-      qty: PropTypes.number,
+      quantity: PropTypes.number,
     }),
   ),
   sortType: PropTypes.string,
