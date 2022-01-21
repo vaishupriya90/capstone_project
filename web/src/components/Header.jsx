@@ -24,9 +24,7 @@ export const Header = ({ cartItems, searchText, removeItemFromCart }) => {
           <Link to="/">The Art Shop</Link>
         </Navbar.Brand>
         <Nav style={{ color: 'white' }}>
-          <Nav.Link>
-            <Link to="/paintings">Paintings</Link>
-          </Nav.Link>
+          <Link to="/paintings">Paintings</Link>
         </Nav>
         <Navbar.Text className="search">
           <FormControl className="m-auto" style={{ width: 500 }} placeholder="Search for a product" onChange={(e) => searchText(e.target.value)} />

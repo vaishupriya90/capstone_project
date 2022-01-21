@@ -2,7 +2,9 @@ import { createAction, createSlice } from '@reduxjs/toolkit';
 
 const updateItemQuantity = ({ cartItems, id, quantity }) => {
   const updatedCartItems = cartItems;
-  updatedCartItems.find((cartItem) => cartItem.id === id).quantity = quantity;
+  // updatedCartItems.find((cartItem) => cartItem.painting.id === id).quantity = quantity;
+  // eslint-disable-next-line no-return-assign
+  updatedCartItems.filter((c) => (c.id === id ? (c.quantity = quantity) : c.quantity));
   return updatedCartItems;
 };
 
@@ -37,12 +39,12 @@ const cartSlice = createSlice({
     removeFromCart: (state, { payload }) => (
       { cartItems: state.cartItems.filter((c) => c.painting.id !== payload.cartItem.id) }
     ),
-    changeQuantity: (state, { payload: { painting, quantity } }) => (
+    changeQuantity: (state, { payload }) => (
       {
         cartItems: updateItemQuantity({
           cartItems: state.cartItems,
-          id: painting.id,
-          quantity,
+          id: payload.cartItem.id,
+          quantity: payload.quantity,
         }),
       }
     ),

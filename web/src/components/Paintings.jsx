@@ -3,9 +3,9 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addToCart, removeFromCart } from '../redux/cart/cartSlice';
-// import { sortByPrice, search } from '../redux/Filters/filter-actions';
 import paintingPropType from '../propTypes/paintingPropType';
 import { getPaintings } from '../redux/paintings/paintingsSlice';
+import { sortByPrice, searchByValue } from '../redux/Filters/filtersSlice';
 import getCartItems from '../redux/cart/selectors';
 import {
   getAllPaintings, isGetPaintingsLoading, getPaintingsError, isGetPaintingsLoaded,
@@ -55,7 +55,7 @@ export const Paintings = ({
 
   return (
     <div className="home">
-      <Filters sort={sortType} sortFunction={sortFunction} />
+      <Filters sortType={sortType} sortFunction={sortFunction} />
       <div className="productContainer">
         {transformProducts().map((painting) => (
           <SinglePainting
@@ -110,7 +110,7 @@ const mapStateToProps = (state) => ({
   paintingsLoading: isGetPaintingsLoading(state),
   error: getPaintingsError(state),
   cartItems: getCartItems(state),
-  sortType: state.filters.sort,
+  sortType: state.filters.sortType,
   searchValue: state.filters.searchValue,
 
 });
@@ -119,8 +119,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchPaintings: () => dispatch(getPaintings()),
   addItemToCart: (item, qty) => dispatch(addToCart(item, qty)),
   removeItemFromCart: (id) => dispatch(removeFromCart(id)),
-  // sortFunction: (sortType) => dispatch(sortByPrice(sortType)),
-  // searchText: (searchValue) => dispatch(search(searchValue)),
+  sortFunction: (sortType) => dispatch(sortByPrice(sortType)),
+  searchText: (searchValue) => dispatch(searchByValue(searchValue)),
 
 });
 

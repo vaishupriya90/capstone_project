@@ -19,7 +19,7 @@ const Cart = ({
   const [total, setTotal] = useState();
 
   useEffect(() => {
-    const calculateTotal = cartItems.reduce((acc, curr) => acc + (curr.painting.price) * curr.qty, 0);
+    const calculateTotal = cartItems.reduce((acc, curr) => acc + (curr.painting.price) * curr.quantity, 0);
     setTotal(calculateTotal);
   }, [cartItems]);
   return (
@@ -27,7 +27,7 @@ const Cart = ({
       <div className="productContainer">
         <ListGroup>
           {cartItems.map((prod) => (
-            <ListGroup.Item key={prod.id}>
+            <ListGroup.Item key={prod.painting.id}>
               <Row>
                 <Col md={2}>
                   <Image className="ListItemImage" src={prod.painting.image} alt={prod.painting.name} fluid rounded />
@@ -43,7 +43,7 @@ const Cart = ({
                 <Col lg={2}>
                   <FormControl
                     as="select"
-                    value={prod.qty}
+                    value={prod.quantity}
                     onChange={(e) => changeItemQuantity(prod.painting, e.target.value)}
                   >
                     {[...Array(prod.painting.availableQuantity).keys()].map((x) => (
@@ -76,7 +76,7 @@ const Cart = ({
             {' '}
             {total}
           </span>
-          <Button type="button" disable={cartItems.length === 0}>Proceed To Checkout</Button>
+          <Button type="button" disabled={cartItems.length === 0}>Proceed To Checkout</Button>
         </div>
       </div>
     </div>
@@ -86,7 +86,7 @@ const Cart = ({
 
 const mapStateToProps = (state) => ({
   cartItems: getCartItems(state),
-  quantity: state.cartItems.qty,
+  quantity: state.cartItems.cartItems.quantity,
 });
 
 const mapDispatchToProps = (dispatch) => ({

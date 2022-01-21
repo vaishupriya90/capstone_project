@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 import '../styles.css';
 
 // eslint-disable-next-line react/prop-types
-const Filters = ({ sort, sortFunction }) => (
+const Filters = ({ sortType, sortFunction }) => (
   <div className="filters">
 
     <span className="title">Sort by price :</span>
@@ -15,7 +15,7 @@ const Filters = ({ sort, sortFunction }) => (
         type="radio"
         id="inline-1"
         onChange={() => sortFunction('lowToHigh')}
-        checked={sort === 'lowToHigh'}
+        checked={sortType === 'lowToHigh'}
       />
     </span>
     <span>
@@ -26,7 +26,7 @@ const Filters = ({ sort, sortFunction }) => (
         type="radio"
         id="inline-2"
         onChange={() => sortFunction('highToLow')}
-        checked={sort === 'highToLow'}
+        checked={sortType === 'highToLow'}
       />
     </span>
 
