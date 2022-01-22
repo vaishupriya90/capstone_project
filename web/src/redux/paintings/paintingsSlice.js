@@ -24,7 +24,6 @@ const paintingsSlice = createSlice({
     [getPaintings.pending]: (state) => {
       state.meta.isGetPaintingsLoading = true;
       state.meta.isGetPaintingsLoaded = false;
-
       state.meta.getPaintingsError = null;
     },
     [getPaintings.fulfilled]: (state, { payload }) => {

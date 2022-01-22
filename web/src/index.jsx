@@ -10,7 +10,6 @@ import store from './redux/store';
 
 ReactDOM.render(
   <Provider store={store}>
-
     <React.StrictMode>
       <BrowserRouter>
         <Auth0Provider

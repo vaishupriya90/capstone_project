@@ -1,11 +1,11 @@
 import '../styles.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addToCart, removeFromCart } from '../redux/cart/cartSlice';
+import { searchByValue } from '../redux/Filters/filtersSlice';
 import paintingPropType from '../propTypes/paintingPropType';
 import { getPaintings } from '../redux/paintings/paintingsSlice';
-import { sortByPrice, searchByValue } from '../redux/Filters/filtersSlice';
 import getCartItems from '../redux/cart/selectors';
 import {
   getAllPaintings, isGetPaintingsLoading, getPaintingsError, isGetPaintingsLoaded,
@@ -18,22 +18,20 @@ import LoadingDisplay from './sharedComponents/LoadingDisplay';
 export const Paintings = ({
   paintings,
   fetchPaintings,
-  paintingsLoaded,
+  isPaintingsLoading,
   addItemToCart,
   error,
   removeItemFromCart,
   cartItems,
-  sortType,
-  sortFunction,
   searchValue,
 }) => {
-  useEffect(() => {
-    if (!paintingsLoaded) {
-      fetchPaintings();
-    }
-  }, [paintingsLoaded]);
+  const [sortType, setSortType] = useState('');
 
-  if (!paintingsLoaded) {
+  useEffect(() => {
+    fetchPaintings();
+  }, []);
+
+  if (isPaintingsLoading) {
     return (<LoadingDisplay />);
   }
 
@@ -41,8 +39,8 @@ export const Paintings = ({
     return <div>Oops! Could not fetch the list of paintings!</div>;
   }
 
-  const transformProducts = () => {
-    let sortedPaintings = paintings;
+  const transformPaintings = () => {
+    let sortedPaintings = Array.from(paintings);
     if (sortType) {
       sortedPaintings = sortedPaintings.sort((a, b) => (sortType === 'lowToHigh' ? a.price - b.price : b.price - a.price));
     }
@@ -55,9 +53,9 @@ export const Paintings = ({
 
   return (
     <div className="home">
-      <Filters sortType={sortType} sortFunction={sortFunction} />
+      <Filters sortType={sortType} setSortType={setSortType} />
       <div className="productContainer">
-        {transformProducts().map((painting) => (
+        {transformPaintings().map((painting) => (
           <SinglePainting
             key={painting.id}
             painting={painting}
@@ -76,20 +74,18 @@ export const Paintings = ({
 Paintings.defaultProps = {
   paintings: [],
   fetchPaintings: () => {},
-  paintingsLoaded: false,
+  isPaintingsLoading: false,
   addItemToCart: () => {},
   error: false,
   removeItemFromCart: () => {},
   cartItems: [],
-  sortType: '',
-  sortFunction: () => {},
   searchValue: '',
 };
 
 Paintings.propTypes = {
   paintings: PropTypes.arrayOf(paintingPropType),
   fetchPaintings: PropTypes.func,
-  paintingsLoaded: PropTypes.bool,
+  isPaintingsLoading: PropTypes.bool,
   addItemToCart: PropTypes.func,
   error: PropTypes.bool,
   removeItemFromCart: PropTypes.func,
@@ -99,18 +95,15 @@ Paintings.propTypes = {
       quantity: PropTypes.number,
     }),
   ),
-  sortType: PropTypes.string,
-  sortFunction: PropTypes.func,
   searchValue: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
   paintings: getAllPaintings(state),
   paintingsLoaded: isGetPaintingsLoaded(state),
-  paintingsLoading: isGetPaintingsLoading(state),
+  isPaintingsLoading: isGetPaintingsLoading(state),
   error: getPaintingsError(state),
   cartItems: getCartItems(state),
-  sortType: state.filters.sortType,
   searchValue: state.filters.searchValue,
 
 });
@@ -119,7 +112,6 @@ const mapDispatchToProps = (dispatch) => ({
   fetchPaintings: () => dispatch(getPaintings()),
   addItemToCart: (item, qty) => dispatch(addToCart(item, qty)),
   removeItemFromCart: (id) => dispatch(removeFromCart(id)),
-  sortFunction: (sortType) => dispatch(sortByPrice(sortType)),
   searchText: (searchValue) => dispatch(searchByValue(searchValue)),
 
 });
