@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="1.0350" tests="2" failures="0">
+  <testsuite name="Root Suite" timestamp="2021-12-13T06:15:30" tests="0" file="cypress/integration/artShop.feature" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="Paintings Page" timestamp="2021-12-13T06:15:30" tests="2" time="1.0350" failures="0">
+    <testcase name="Paintings Page I can see the single painting item" time="0.7950" classname="I can see the single painting item">
+    </testcase>
+    <testcase name="Paintings Page I can see a list of paintings" time="0.2400" classname="I can see a list of paintings">
+    </testcase>
+  </testsuite>
+</testsuites>

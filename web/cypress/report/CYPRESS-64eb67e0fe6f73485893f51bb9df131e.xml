@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.9160" tests="2" failures="1">
+  <testsuite name="Root Suite" timestamp="2021-12-08T23:02:39" tests="0" file="cypress/integration/artShop.feature" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="Paintings Page" timestamp="2021-12-08T23:02:39" tests="2" time="0.9160" failures="1">
+    <testcase name="Paintings Page I can see the single painting item" time="0.9160" classname="I can see the single painting item">
+    </testcase>
+    <testcase name="Paintings Page I can see a list of paintings" time="0.0000" classname="I can see a list of paintings">
+      <failure message="Step implementation missing for: display the following  names of the paintings" type="Error"><![CDATA[Error: Step implementation missing for: display the following  names of the paintings
+    at Context.resolveAndRunStepDefinition (http://localhost:3000/__cypress/tests?p=cypress/integration/artShop.feature:12315:11)
+    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/artShop.feature:11630:35)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>
