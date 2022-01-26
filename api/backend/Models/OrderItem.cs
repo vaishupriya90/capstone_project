@@ -9,8 +9,6 @@ namespace backend.Models
         public int Id { get; set; }
         public int PaintingId { get; set; }
 
-        public string UserEmail { get; set; }
-
         public int OrderId { get; set; }
         public int Quantity { get; set; }
         public virtual Painting Painting { get; set; }

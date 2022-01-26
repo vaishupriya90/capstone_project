@@ -8,10 +8,10 @@ namespace backend.Models
         [Key]
         public int Id { get; set; }
         public string UserEmail { get; set; }
-        public int Total { get; set; }
+        public decimal Total { get; set; }
 
-        public DateTime OrderTimeStamp {get;set;}
+        public DateTime OrderTimeStamp { get; set; }
 
-        public ICollection<OrderItem> orderItems { get; set; }
+        public ICollection<OrderItem> OrderItems { get; set; }
     }
 }
