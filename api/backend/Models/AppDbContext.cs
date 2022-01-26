@@ -15,12 +15,18 @@ namespace backend.Models
         public virtual DbSet<Painting> Paintings { get; set; }
         public virtual DbSet<OrderItem> OrderItems { get; set; }
 
-        public virtual DbSet<User> Users { get; set; }
-
         public virtual DbSet<Order> Orders { get; set; }
+
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+            configurationBuilder.Properties<decimal>()
+                .HavePrecision(18, 6);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+
             modelBuilder.Entity<Painting>()
             .HasData(
                 new
