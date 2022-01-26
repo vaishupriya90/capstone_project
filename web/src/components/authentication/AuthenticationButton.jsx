@@ -7,9 +7,21 @@ import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 
 const AuthenticationButton = () => {
-  const { isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
-  return isAuthenticated ? <LogoutButton /> : <LoginButton />;
+  return isAuthenticated ? (
+    <>
+      <p style={{ color: 'white' }}>
+        Welcome
+        {' '}
+        {user.nickname}
+        !
+      </p>
+
+      <LogoutButton />
+    </>
+  )
+    : <LoginButton />;
 };
 
 export default AuthenticationButton;

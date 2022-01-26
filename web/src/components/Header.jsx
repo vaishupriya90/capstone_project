@@ -11,7 +11,7 @@ import { AiFillDelete } from 'react-icons/ai';
 import { search } from '../redux/Filters/filter-actions';
 import { removeFromCart } from '../redux/cart/cartSlice';
 import getCartItems from '../redux/cart/selectors';
-import AuthenticationButton from './AuthenticationButton';
+import AuthenticationButton from './authentication/AuthenticationButton';
 
 export const Header = ({ cartItems, searchText, removeItemFromCart }) => (
   <Navbar className="navbar" bg="dark" variant="dark" style={{ height: 80 }}>
