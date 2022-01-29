@@ -7,7 +7,7 @@ import {
   Button,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart, FaPaintBrush } from 'react-icons/fa';
 import { AiFillDelete } from 'react-icons/ai';
 import { search } from '../redux/Filters/filter-actions';
 import { removeFromCart } from '../redux/cart/cartSlice';
@@ -17,10 +17,11 @@ import UserLogin from './authentication/UserLogin';
 export const Header = ({ cartItems, searchText, removeItemFromCart }) => {
   const { isAuthenticated, user } = useAuth0();
   return (
-    <Navbar className="navbar" bg="dark" variant="dark" style={{ height: 80 }}>
+    <Navbar className="navbar header" variant="dark" style={{ height: 80 }}>
       <Container>
         <Navbar.Brand>
-          <Link to="/">The Art Shop</Link>
+          <FaPaintBrush fontSize="60px" color="orange" />
+          <Link to="/" style={{ fontFamily: 'cursive', fontSize: '25px' }}>The Art Shop</Link>
         </Navbar.Brand>
         <Nav style={{ color: 'white' }}>
           <Link to="/paintings">Paintings</Link>
@@ -29,9 +30,9 @@ export const Header = ({ cartItems, searchText, removeItemFromCart }) => {
           <FormControl className="m-auto" style={{ width: 500 }} placeholder="Search for a product" onChange={(e) => searchText(e.target.value)} />
         </Navbar.Text>
         <Dropdown className="row justify-content-end">
-          <Dropdown.Toggle variant="dark">
+          <Dropdown.Toggle variant="rgb(44, 114, 85">
             <FaShoppingCart color="white" fontSize="30px" />
-            <Badge bg="dark">{cartItems.length}</Badge>
+            <Badge bg="rgb(44, 114, 85">{cartItems.length}</Badge>
           </Dropdown.Toggle>
 
           <Dropdown.Menu style={{ minWidth: 350 }}>
