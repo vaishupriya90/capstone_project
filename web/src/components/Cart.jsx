@@ -44,7 +44,7 @@ const Cart = ({
   useEffect(() => {
     const calculateTotal = cartItems.reduce((acc, curr) => acc + (curr.painting.price) * curr.quantity, 0);
     setTotal(calculateTotal);
-  }, []);
+  }, [cartItems]);
 
   return (
     <div className="home">
