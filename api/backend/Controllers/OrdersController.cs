@@ -42,10 +42,11 @@ namespace backend.Controllers
                         Quantity = item.Quantity,
                     }).ToList(),
                     OrderTimeStamp = DateTime.UtcNow,
+                    OrderNumber = DateTime.UtcNow.ToString("yyyyMMddhhmmssfff"),
                 };
                 _db.Orders.Add(order);
                 await _db.SaveChangesAsync();
-                return new OkResult();
+                return new OkObjectResult(order);
             }
             catch (Exception e)
             {

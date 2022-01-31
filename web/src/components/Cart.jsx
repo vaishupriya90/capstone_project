@@ -34,6 +34,10 @@ const Cart = ({
       };
       console.log(newOrder);
       axios.post(`${process.env.REACT_APP_BASE_API}/api/orders`, newOrder);
+      // TODO:
+      // if(success){
+      //   <success response={}
+      // }
     } else {
       loginWithRedirect();
     }

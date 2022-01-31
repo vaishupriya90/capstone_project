@@ -7,7 +7,11 @@ namespace backend.Models
     {
         [Key]
         public int Id { get; set; }
+        
+        public string OrderNumber { get; set; }
+        
         public string UserEmail { get; set; }
+        
         public decimal Total { get; set; }
 
         public DateTime OrderTimeStamp { get; set; }
