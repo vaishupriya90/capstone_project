@@ -32,7 +32,7 @@ export const Header = ({ cartItems, searchText, removeItemFromCart }) => {
           <Navbar.Text className="search">
             <FormControl className="m-auto" style={{ width: 500 }} placeholder="Search for a product" onChange={(e) => searchText(e.target.value)} />
           </Navbar.Text>
-          <Dropdown className="row justify-content-end">
+          <Dropdown>
             <Dropdown.Toggle variant="rgb(44, 114, 85">
               <FaShoppingCart color="white" fontSize="30px" />
               <Badge bg="rgb(44, 114, 85">{cartItems.length}</Badge>

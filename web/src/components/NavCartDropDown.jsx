@@ -6,7 +6,7 @@ import { AiFillDelete } from 'react-icons/ai';
 
 export default function NavCartDropDown({ cartItems, removeItemFromCart }) {
   return (
-    <Dropdown.Menu>
+    <Dropdown.Menu align="end" style={{ minWidth: 370 }}>
       {cartItems.length > 0 ? (
         <>
           {cartItems.map((prod) => (
