@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import cartReducer, { addToCart } from './cartSlice';
-import { getCartItems } from './selectors';
+import getCartItems from './selectors';
 
 const testPaintings = [
   {
