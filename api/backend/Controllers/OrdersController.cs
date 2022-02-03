@@ -30,8 +30,8 @@ namespace backend.Controllers
 
             try
             {
-                var paintindIds = orderRequest.OrderItems.Select(p => p.PaintingId);
-                var paintings = await _db.Paintings.Where(p => paintindIds.Contains(p.Id)).ToListAsync();
+                var paintingIds = orderRequest.OrderItems.Select(p => p.PaintingId);
+                var paintings = await _db.Paintings.Where(p => paintingIds.Contains(p.Id)).ToListAsync();
                 Order order = new Order
                 {
                     UserEmail = orderRequest.UserEmail,
@@ -46,7 +46,16 @@ namespace backend.Controllers
                 };
                 _db.Orders.Add(order);
                 await _db.SaveChangesAsync();
-                return new OkObjectResult(order);
+
+                var newOrderCreated = new OrderResponse {
+                    OrderNumber = order.OrderNumber,
+                    UserEmail = order.UserEmail,
+                    Total = order.Total,
+                    OrderDate = (order.OrderTimeStamp).ToString("MM/dd/yyyy"),
+                    OrderItems = order.OrderItems
+                };
+            
+                return new CreatedResult("api/orderConfirmation",newOrderCreated);
             }
             catch (Exception e)
             {

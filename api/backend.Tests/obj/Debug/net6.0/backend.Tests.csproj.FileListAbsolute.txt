@@ -1,0 +1,6 @@
+/Users/chellaiv/Vaishu/capstone_project/api/backend.Tests/bin/Debug/net6.0/CoverletSourceRootsMapping
+/Users/chellaiv/Vaishu/capstone_project/api/backend.Tests/obj/Debug/net6.0/backend.Tests.csproj.AssemblyReference.cache
+/Users/chellaiv/Vaishu/capstone_project/api/backend.Tests/obj/Debug/net6.0/backend.Tests.GeneratedMSBuildEditorConfig.editorconfig
+/Users/chellaiv/Vaishu/capstone_project/api/backend.Tests/obj/Debug/net6.0/backend.Tests.AssemblyInfoInputs.cache
+/Users/chellaiv/Vaishu/capstone_project/api/backend.Tests/obj/Debug/net6.0/backend.Tests.AssemblyInfo.cs
+/Users/chellaiv/Vaishu/capstone_project/api/backend.Tests/obj/Debug/net6.0/backend.Tests.csproj.CoreCompileInputs.cache

@@ -23,7 +23,7 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> Get()
         {
             List<Painting> paintings = new List<Painting>();
 
@@ -35,11 +35,6 @@ namespace backend.Controllers
             {
                 _logger.LogCritical($"SQL Read error. It is likely that there is no database connection established. ${e.Message}");
                 throw;
-            }
-
-            if (!paintings.Any())
-            {
-                return new NotFoundResult();
             }
 
             return new OkObjectResult(paintings);

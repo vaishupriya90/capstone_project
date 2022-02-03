@@ -3,6 +3,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useState, useEffect } from 'react';
@@ -13,6 +14,7 @@ import { AiFillDelete } from 'react-icons/ai';
 
 import { changeQuantity, removeFromCart } from '../redux/cart/cartSlice';
 import getCartItems from '../redux/cart/selectors';
+// import OrderConfirmation from './order/OrderConfirmation';
 
 // eslint-disable-next-line react/prop-types
 const Cart = ({
@@ -34,10 +36,7 @@ const Cart = ({
       };
       console.log(newOrder);
       axios.post(`${process.env.REACT_APP_BASE_API}/api/orders`, newOrder);
-      // TODO:
-      // if(success){
-      //   <success response={}
-      // }
+      // const {response} = await axios.post(`${process.env.REACT_APP_BASE_API}/api/orders`, newOrder);
     } else {
       loginWithRedirect();
     }
@@ -104,8 +103,7 @@ const Cart = ({
             {' '}
             {total}
           </span>
-          <Button type="button" disabled={cartItems.length === 0} onClick={() => { handleClick(cartItems); }}>Proceed To Checkout</Button>
-          {/* {createOrder ? <OrderCheckout /> : 'nothing to show'} */}
+          <Link to="/orderStatus"><Button type="button" disabled={cartItems.length === 0} onClick={() => { handleClick(cartItems); }}>Proceed To Checkout</Button></Link>
         </div>
       </div>
     </div>

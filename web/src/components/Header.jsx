@@ -6,7 +6,7 @@ import {
   Badge, Container, FormControl, Nav, Navbar, Dropdown, Stack,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FaShoppingCart, FaPaintBrush } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 // import { AiFillDelete } from 'react-icons/ai';
 import { search } from '../redux/Filters/filter-actions';
 import { removeFromCart } from '../redux/cart/cartSlice';
@@ -19,10 +19,12 @@ export const Header = ({ cartItems, searchText, removeItemFromCart }) => {
   return (
     <Navbar className="navbar header" variant="dark" style={{ height: 80 }}>
       <Container fluid>
-        <Stack direction="horizontal">
+        <Stack direction="horizontal" gap="5">
           <Navbar.Brand>
-            <FaPaintBrush fontSize="60px" color="orange" />
-            <Link to="/" style={{ fontFamily: 'cursive', fontSize: '25px' }}>The Art Shop</Link>
+            {/* <FaPaintBrush fontSize="60px" color="orange" /> */}
+            <Link to="/">
+              <img src="https://theartshopbrand.com/wp-content/uploads/2021/03/logo-10-1.png" alt="logo" width="175px" height="95px" />
+            </Link>
           </Navbar.Brand>
           <Nav style={{ color: 'white' }}>
             <Link to="/paintings">Paintings</Link>
