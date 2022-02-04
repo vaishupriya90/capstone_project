@@ -8,7 +8,7 @@ import {
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 // import { AiFillDelete } from 'react-icons/ai';
-import { search } from '../redux/Filters/filter-actions';
+import { search } from '../redux/filters/filter-actions';
 import { removeFromCart } from '../redux/cart/cartSlice';
 import getCartItems from '../redux/cart/selectors';
 import UserLogin from './authentication/UserLogin';

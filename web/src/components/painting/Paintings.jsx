@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addToCart, removeFromCart } from '../../redux/cart/cartSlice';
-import { searchByValue } from '../../redux/Filters/filtersSlice';
+import { searchByValue } from '../../redux/filters/filtersSlice';
 import paintingPropType from '../../propTypes/paintingPropType';
 import { getPaintings } from '../../redux/paintings/paintingsSlice';
 import getCartItems from '../../redux/cart/selectors';

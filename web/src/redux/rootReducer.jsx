@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import cartReducer from './cart/cartSlice';
 import paintingsReducer from './paintings/paintingsSlice';
-import filtersReducer from './Filters/filter-reducer';
-import ordersReducer from './Orders/ordersSlice';
+import filtersReducer from './filters/filter-reducer';
+import ordersReducer from './orders/ordersSlice';
 
 const rootReducer = combineReducers({
   paintings: paintingsReducer,
