@@ -7,7 +7,6 @@ import Paintings from './components/painting/Paintings';
 import Cart from './components/Cart';
 import './styles.css';
 import './App.css';
-import OrderConfirmation from './components/order/OrderConfirmation';
 
 function App() {
   return (
@@ -17,7 +16,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/paintings" element={<Paintings />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/orderStatus" element={<OrderConfirmation />} />
       </Routes>
     </div>
   );

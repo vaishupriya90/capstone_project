@@ -3,10 +3,9 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useState, useEffect } from 'react';
 import {
   Button, ListGroup, Row, Col, Image, FormControl,
 } from 'react-bootstrap';
@@ -14,15 +13,17 @@ import { AiFillDelete } from 'react-icons/ai';
 
 import { changeQuantity, removeFromCart } from '../redux/cart/cartSlice';
 import getCartItems from '../redux/cart/selectors';
-// import OrderConfirmation from './order/OrderConfirmation';
+import OrderConfirmationModal from './order/OrderConfirmationModal';
 
 // eslint-disable-next-line react/prop-types
 const Cart = ({
   cartItems, removeItemFromCart, changeItemQuantity,
 }) => {
   const { user, loginWithRedirect, isAuthenticated } = useAuth0();
+  const [modalShow, setModalShow] = React.useState(false);
+  const [response, setResponse] = useState(null);
 
-  const handleClick = (orderItems) => {
+  const handleClick = async (orderItems) => {
     const orderItemReq = orderItems.map((orderItem) => (
       {
         paintingId: orderItem.painting.id,
@@ -34,9 +35,12 @@ const Cart = ({
         userEmail: user.email,
         orderItems: orderItemReq,
       };
-      console.log(newOrder);
-      axios.post(`${process.env.REACT_APP_BASE_API}/api/orders`, newOrder);
-      // const {response} = await axios.post(`${process.env.REACT_APP_BASE_API}/api/orders`, newOrder);
+      // console.log(newOrder);
+      const { data } = await axios.post(`${process.env.REACT_APP_BASE_API}/api/orders`, newOrder);
+      setModalShow(true);
+      // console.log(data.orderNumber);
+      setResponse(data.orderNumber);
+      localStorage.clear('cartItems');
     } else {
       loginWithRedirect();
     }
@@ -103,7 +107,13 @@ const Cart = ({
             {' '}
             {total}
           </span>
-          <Link to="/orderStatus"><Button type="button" disabled={cartItems.length === 0} onClick={() => { handleClick(cartItems); }}>Proceed To Checkout</Button></Link>
+          <Button type="button" disabled={cartItems.length === 0} onClick={() => { handleClick(cartItems); }}>Proceed To Checkout</Button>
+
+          <OrderConfirmationModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            response={response}
+          />
         </div>
       </div>
     </div>
