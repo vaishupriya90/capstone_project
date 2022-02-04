@@ -24,8 +24,27 @@ namespace backend.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Get(){
+
+            try
+            {
+                var orders = await _db.Orders.Include(o => o.OrderItems).ToListAsync();
+                var ordersResponse = orders.Select(o => new OrderResponse(o));
+                return new OkObjectResult(ordersResponse);
+                
+                
+            }
+            catch (Exception e)
+            {
+                _logger.LogCritical($"SQL Read error. It is likely that there is no database connection established. ${e.Message}");
+                throw;
+            }
+
+        }
+
         [HttpPost]
-        public async Task<IActionResult> Post(OrderRequest orderRequest)
+         public async Task<IActionResult> Post(OrderRequest orderRequest)
         {
 
             try
@@ -47,15 +66,9 @@ namespace backend.Controllers
                 _db.Orders.Add(order);
                 await _db.SaveChangesAsync();
 
-                var newOrderCreated = new OrderResponse {
-                    OrderNumber = order.OrderNumber,
-                    UserEmail = order.UserEmail,
-                    Total = order.Total,
-                    OrderDate = (order.OrderTimeStamp).ToString("MM/dd/yyyy"),
-                    OrderItems = order.OrderItems
-                };
-            
-                return new CreatedResult("api/orderConfirmation",newOrderCreated);
+                var newOrderCreated = new OrderResponse(order);
+
+                return new CreatedResult("api/orderConfirmation", newOrderCreated);
             }
             catch (Exception e)
             {
