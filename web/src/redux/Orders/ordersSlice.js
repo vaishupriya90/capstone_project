@@ -25,7 +25,7 @@ const ordersSlice = createSlice({
       state.meta.getOrdersError = null;
       state.meta.isGetOrdersLoaded = false;
     },
-    [getOrders.fullfilled]: (state, { payload }) => {
+    [getOrders.fulfilled]: (state, { payload }) => {
       state.meta.isGetOrdersLoading = false;
       state.meta.getOrdersError = false;
       state.meta.isGetOrdersLoaded = true;
