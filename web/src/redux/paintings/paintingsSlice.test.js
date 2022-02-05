@@ -38,6 +38,7 @@ describe('paintings', () => {
       meta: {
         isGetPaintingsLoading: false,
         getPaintingsError: null,
+        isGetPaintingsLoaded: false,
       },
     });
   });
@@ -53,6 +54,7 @@ describe('paintings', () => {
         meta: {
           isGetPaintingsLoading: true,
           getPaintingsError: null,
+          isGetPaintingsLoaded: false,
         },
       });
     });

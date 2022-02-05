@@ -7,7 +7,7 @@ const Home = () => (
   <div className="homePage">
     Home
     <div className="homeButton">
-      <h1 style={{ color: 'white' }}>Great Products, Great Price!</h1>
+      <h1 style={{ color: 'white', fontSize: '60px' }}>Great Products, Great Price!</h1>
       <Link to="/paintings">
         <Button variant="light">
           <HiShoppingBag />

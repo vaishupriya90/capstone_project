@@ -16,6 +16,7 @@ ReactDOM.render(
           domain="art-shop.us.auth0.com"
           clientId="ocBnWQGH8nFArFk6VJbOTyDqXquU7a6g"
           redirectUri="http://localhost:3000/paintings"
+          cacheLocation="localstorage"
         >
           <App />
         </Auth0Provider>

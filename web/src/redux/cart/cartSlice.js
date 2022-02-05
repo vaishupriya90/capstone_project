@@ -19,27 +19,34 @@ export const changeQuantity = createAction('cart/changeQuantity', (updatedCartIt
   },
 }));
 
+export const clearCart = createAction('cart/clearCart');
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    cartItems: [],
+    cartItems: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [],
   },
   reducers: {
-    addToCart: (state, { payload }) => ({
-      cartItems: [...state.cartItems, { painting: payload.cartItem, quantity: 1 }],
-    }),
-    removeFromCart: (state, { payload }) => (
-      { cartItems: state.cartItems.filter((c) => c.painting.id !== payload.cartItem.id) }
-    ),
-    changeQuantity: (state, { payload }) => (
-      {
-        cartItems: state.cartItems.map(
-          (cartItem) => (cartItem.painting.id === payload.cartItem.id
-            ? { ...cartItem, quantity: payload.quantity } : cartItem
-          ),
+    addToCart: (state, { payload }) => {
+      state.cartItems = [...state.cartItems, { painting: payload.cartItem, quantity: 1 }];
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+    },
+    removeFromCart: (state, { payload }) => {
+      state.cartItems = state.cartItems.filter((c) => c.painting.id !== payload.cartItem.id);
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+    },
+    changeQuantity: (state, { payload }) => {
+      state.cartItems = state.cartItems.map(
+        (cartItem) => (cartItem.painting.id === payload.cartItem.id
+          ? { ...cartItem, quantity: payload.quantity } : cartItem
         ),
-      }
-    ),
+      );
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+    },
+    clearCart: (state) => {
+      state.cartItems = [];
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+    },
   },
 });
 

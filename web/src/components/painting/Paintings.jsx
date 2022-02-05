@@ -1,19 +1,19 @@
-import '../styles.css';
+import '../../styles.css';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addToCart, removeFromCart } from '../redux/cart/cartSlice';
-import { searchByValue } from '../redux/Filters/filtersSlice';
-import paintingPropType from '../propTypes/paintingPropType';
-import { getPaintings } from '../redux/paintings/paintingsSlice';
-import getCartItems from '../redux/cart/selectors';
+import { addToCart, removeFromCart } from '../../redux/cart/cartSlice';
+import { searchByValue } from '../../redux/filters/filtersSlice';
+import paintingPropType from '../../propTypes/paintingPropType';
+import { getPaintings } from '../../redux/paintings/paintingsSlice';
+import getCartItems from '../../redux/cart/selectors';
 import {
   getAllPaintings, isGetPaintingsLoading, getPaintingsError, isGetPaintingsLoaded,
-} from '../redux/paintings/selectors';
+} from '../../redux/paintings/selectors';
 
-import Filters from './Filters';
+import Filters from '../Filters';
 import SinglePainting from './SinglePainting';
-import LoadingDisplay from './sharedComponents/LoadingDisplay';
+import LoadingDisplay from '../sharedComponents/LoadingDisplay';
 
 export const Paintings = ({
   paintings,
