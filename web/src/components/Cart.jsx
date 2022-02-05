@@ -11,13 +11,13 @@ import {
 } from 'react-bootstrap';
 import { AiFillDelete } from 'react-icons/ai';
 
-import { changeQuantity, removeFromCart } from '../redux/cart/cartSlice';
+import { changeQuantity, removeFromCart, clearCart } from '../redux/cart/cartSlice';
 import getCartItems from '../redux/cart/selectors';
 import OrderConfirmationModal from './order/OrderConfirmationModal';
 
 // eslint-disable-next-line react/prop-types
 const Cart = ({
-  cartItems, removeItemFromCart, changeItemQuantity,
+  cartItems, removeItemFromCart, changeItemQuantity, clearCartItems,
 }) => {
   const { user, loginWithRedirect, isAuthenticated } = useAuth0();
   const [modalShow, setModalShow] = React.useState(false);
@@ -35,12 +35,12 @@ const Cart = ({
         userEmail: user.email,
         orderItems: orderItemReq,
       };
-      // console.log(newOrder);
       const { data } = await axios.post(`${process.env.REACT_APP_BASE_API}/api/orders`, newOrder);
       setModalShow(true);
-      // console.log(data.orderNumber);
       setResponse(data.orderNumber);
-      localStorage.clear('cartItems');
+      // localStorage.clear('cartItems');
+      clearCartItems();
+      // navigate to order history
     } else {
       loginWithRedirect();
     }
@@ -129,7 +129,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   removeItemFromCart: (painting) => dispatch(removeFromCart(painting)),
   changeItemQuantity: (painting, quantity) => dispatch(changeQuantity(painting, quantity)),
-
+  clearCartItems: () => dispatch(clearCart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

@@ -19,6 +19,8 @@ export const changeQuantity = createAction('cart/changeQuantity', (updatedCartIt
   },
 }));
 
+export const clearCart = createAction('cart/clearCart');
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
@@ -39,6 +41,10 @@ const cartSlice = createSlice({
           ? { ...cartItem, quantity: payload.quantity } : cartItem
         ),
       );
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+    },
+    clearCart: (state) => {
+      state.cartItems = [];
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     },
   },
