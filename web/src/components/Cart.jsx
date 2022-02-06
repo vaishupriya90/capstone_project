@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
 
@@ -22,6 +21,7 @@ const Cart = ({
   const { user, loginWithRedirect, isAuthenticated } = useAuth0();
   const [modalShow, setModalShow] = React.useState(false);
   const [response, setResponse] = useState(null);
+  const [total, setTotal] = useState();
 
   const handleClick = async (orderItems) => {
     const orderItemReq = orderItems.map((orderItem) => (
@@ -38,7 +38,6 @@ const Cart = ({
       const { data } = await axios.post(`${process.env.REACT_APP_BASE_API}/api/orders`, newOrder);
       setModalShow(true);
       setResponse(data.orderNumber);
-      // localStorage.clear('cartItems');
       clearCartItems();
       // navigate to order history
     } else {
@@ -46,10 +45,9 @@ const Cart = ({
     }
   };
 
-  const [total, setTotal] = useState();
-
   useEffect(() => {
-    const calculateTotal = cartItems.reduce((acc, curr) => acc + (curr.painting.price) * curr.quantity, 0);
+    const calculateTotal = cartItems
+      .reduce((acc, curr) => acc + (curr.painting.price) * curr.quantity, 0);
     setTotal(calculateTotal);
   }, [cartItems]);
 

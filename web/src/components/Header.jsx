@@ -3,25 +3,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import {
-  Badge, Container, FormControl, Nav, Navbar, Dropdown, Stack,
+  Container, FormControl, Nav, Navbar, Stack,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FaShoppingCart } from 'react-icons/fa';
-// import { AiFillDelete } from 'react-icons/ai';
 import { search } from '../redux/filters/filter-actions';
-import { removeFromCart } from '../redux/cart/cartSlice';
-import getCartItems from '../redux/cart/selectors';
 import UserLogin from './authentication/UserLogin';
-import NavCartDropDown from './NavCartDropDown';
+import CartDropDown from './CartDropDown';
 
-export const Header = ({ cartItems, searchText, removeItemFromCart }) => {
+export const Header = ({ searchText }) => {
   const { isAuthenticated, user } = useAuth0();
+
   return (
     <Navbar className="navbar header" variant="dark" style={{ height: 80 }}>
       <Container fluid>
         <Stack direction="horizontal" gap="5">
           <Navbar.Brand>
-            {/* <FaPaintBrush fontSize="60px" color="orange" /> */}
             <Link to="/">
               <img src="https://theartshopbrand.com/wp-content/uploads/2021/03/logo-10-1.png" alt="logo" width="175px" height="95px" />
             </Link>
@@ -34,13 +30,7 @@ export const Header = ({ cartItems, searchText, removeItemFromCart }) => {
           <Navbar.Text className="search">
             <FormControl className="m-auto" style={{ width: 500 }} placeholder="Search for a product" onChange={(e) => searchText(e.target.value)} />
           </Navbar.Text>
-          <Dropdown>
-            <Dropdown.Toggle variant="rgb(44, 114, 85">
-              <FaShoppingCart color="white" fontSize="30px" />
-              <Badge bg="rgb(44, 114, 85">{cartItems.length}</Badge>
-            </Dropdown.Toggle>
-            <NavCartDropDown cartItems={cartItems} removeItemFromCart={removeItemFromCart} />
-          </Dropdown>
+          <CartDropDown />
           <UserLogin />
           {isAuthenticated ? (
             <span style={{ color: 'white' }}>
@@ -55,15 +45,13 @@ export const Header = ({ cartItems, searchText, removeItemFromCart }) => {
     </Navbar>
   );
 };
+
 const mapStateToProps = (state) => ({
-  cartItems: getCartItems(state),
   searchValue: state.filters.searchValue,
 });
 
 const mapDispatchToProp = (dispatch) => ({
   searchText: (searchValue) => dispatch(search(searchValue)),
-  removeItemFromCart: (painting) => dispatch(removeFromCart(painting)),
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProp)(Header);
