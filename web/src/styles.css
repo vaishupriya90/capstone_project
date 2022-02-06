@@ -46,6 +46,13 @@
   flex-direction: column;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 /* Home Page */
 
 .home {
@@ -84,11 +91,6 @@
 
 .products {
   width: 18rem;
-  height:24rem;
-}
-
-.card{
-  height:24rem;
 }
 
 .productImage{

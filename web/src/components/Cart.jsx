@@ -68,7 +68,6 @@ const Cart = ({
                   $
                   {prod.painting.price}
                 </Col>
-
                 <Col lg={2}>
                   <FormControl
                     as="select"
@@ -78,7 +77,6 @@ const Cart = ({
                     {[...Array(prod.painting.availableQuantity).keys()].map((x) => (
                       <option key={x + 1}>{x + 1}</option>
                     ))}
-
                   </FormControl>
                 </Col>
                 <Col lg={2}>
@@ -94,6 +92,7 @@ const Cart = ({
             </ListGroup.Item>
           ))}
         </ListGroup>
+
         <div className="filters summary">
           <span>
             Subtotal (
