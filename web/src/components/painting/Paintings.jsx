@@ -2,6 +2,7 @@ import '../../styles.css';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Container, Row, Col } from 'react-bootstrap';
 import { addToCart, removeFromCart } from '../../redux/cart/cartSlice';
 import { searchByValue } from '../../redux/filters/filtersSlice';
 import paintingPropType from '../../propTypes/paintingPropType';
@@ -25,7 +26,7 @@ export const Paintings = ({
   cartItems,
   searchValue,
 }) => {
-  const [sortType, setSortType] = useState('');
+  const [sortType, setSortType] = useState('lowToHigh');
 
   useEffect(() => {
     fetchPaintings();
@@ -52,22 +53,51 @@ export const Paintings = ({
   };
 
   return (
-    <div className="home">
-      <Filters sortType={sortType} setSortType={setSortType} />
-      <div className="productContainer">
-        {transformPaintings().map((painting) => (
-          <SinglePainting
-            key={painting.id}
-            painting={painting}
-            error={error}
-            addToCart={addItemToCart}
-            removeFromCart={removeItemFromCart}
-            cartItems={cartItems}
-          />
-        ))}
-      </div>
-    </div>
+    <>
+      <Container fluid>
+        <Row>
+          <Col lg="6" />
+          <Col
+            lg="1"
+            style={{
+              textAlign: 'right', marginRight: '0px', paddingRight: '0px', marginBottom: '0px',
+            }}
+          >
+            Sort by price:
+          </Col>
+          <Col
+            lg="2"
+            style={{
+              marginRight: '0px', marginLeft: '0px', paddingRight: '0px', paddingLeft: '2px',
+            }}
+          >
+            <Filters sortType={sortType} setSortType={setSortType} />
+          </Col>
+          <Col lg="3" />
+        </Row>
+        <Row>
+          <Col lg="9">
+            <div>
+              <div className="productContainer">
+                {transformPaintings().map((painting) => (
+                  <SinglePainting
+                    key={painting.id}
+                    painting={painting}
+                    error={error}
+                    addToCart={addItemToCart}
+                    removeFromCart={removeItemFromCart}
+                    cartItems={cartItems}
+                  />
+                ))}
+              </div>
+            </div>
+          </Col>
+          <Col />
+        </Row>
 
+      </Container>
+
+    </>
   );
 };
 

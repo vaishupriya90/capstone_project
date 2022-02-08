@@ -6,12 +6,11 @@ import Home from './components/Home';
 import Paintings from './components/painting/Paintings';
 import Cart from './components/Cart';
 import OrderHistory from './components/order/OrderHistory';
-import './styles.css';
 import './App.css';
 
 function App() {
   return (
-    <div>
+    <div className="content">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
