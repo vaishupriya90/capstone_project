@@ -16,17 +16,17 @@ const SinglePainting = ({
             {painting.name}
           </Card.Title>
           <Row>
-            <Col>
+            <Col xs="4">
               <Card.Subtitle>
-                <span>
+                <span style={{ alignContent: 'center' }}>
                   $
                   {painting.price}
                 </span>
               </Card.Subtitle>
             </Col>
-            <Col>
-              {cartItems.some((p) => p.painting.id === painting.id) ? (<Button variant="outline-danger" onClick={() => removeFromCart(painting)}>Remove From Cart</Button>
-              ) : (<Button variant="dark" onClick={() => addToCart(painting, 1)}>Add to cart</Button>
+            <Col xs="8">
+              {cartItems.some((p) => p.painting.id === painting.id) ? (<Button variant="outline-danger" className="btn-fixed" onClick={() => removeFromCart(painting)}>Remove</Button>
+              ) : (<Button variant="dark" className="btn-fixed" onClick={() => addToCart(painting, 1)}>Add to cart</Button>
               )}
             </Col>
           </Row>
