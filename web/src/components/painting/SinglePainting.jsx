@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  Container, Card, Button, Row, Col,
+  Card, Button, Row, Col,
 } from 'react-bootstrap';
 
 const SinglePainting = ({
   painting, addToCart, removeFromCart, cartItems,
 }) => (
-  <div>
-    <Container className="mt-5">
+  <Row>
+    <Col>
       <Card className="products">
         <Card.Img className="productImage" variant="top" src={painting.image} alt={painting.name} />
         <Card.Body>
@@ -49,8 +49,8 @@ const SinglePainting = ({
 
         </Card.Body>
       </Card>
-    </Container>
-  </div>
+    </Col>
+  </Row>
 );
 
 export default SinglePainting;

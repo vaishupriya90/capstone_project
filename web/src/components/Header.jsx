@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import {
-  Container, FormControl, Nav, Navbar, Stack,
+  FormControl, Nav, Navbar, Stack, Container,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { search } from '../redux/filters/filter-actions';
@@ -14,8 +14,8 @@ export const Header = ({ searchText }) => {
   const { isAuthenticated, user } = useAuth0();
 
   return (
-    <Navbar className="navbar header" variant="dark" style={{ height: 80 }}>
-      <Container fluid>
+    <Container fluid>
+      <Navbar className="navbar header" variant="dark" style={{ height: 80 }}>
         <Stack direction="horizontal" gap="5">
           <Navbar.Brand>
             <Link to="/">
@@ -41,8 +41,8 @@ export const Header = ({ searchText }) => {
             </span>
           ) : ''}
         </Stack>
-      </Container>
-    </Navbar>
+      </Navbar>
+    </Container>
   );
 };
 

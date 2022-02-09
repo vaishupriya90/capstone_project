@@ -2,7 +2,7 @@ import '../../styles.css';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { addToCart, removeFromCart } from '../../redux/cart/cartSlice';
 import { searchByValue } from '../../redux/filters/filtersSlice';
 import paintingPropType from '../../propTypes/paintingPropType';
@@ -54,65 +54,51 @@ export const PaintingsComponent = ({
 
   return (
     <>
-      <Container fluid>
-        <Row>
-          <Col lg="6" />
-          <Col
-            lg="1"
-            style={{
-              textAlign: 'right', marginRight: '0px', paddingRight: '0px', marginBottom: '0px',
-            }}
-          >
-            Sort by price:
-          </Col>
-          <Col
-            lg="2"
-            style={{
-              marginRight: '0px', marginLeft: '0px', paddingRight: '0px', paddingLeft: '10px',
-            }}
-          >
-            <Filters sortType={sortType} setSortType={setSortType} />
-          </Col>
-          <Col lg="3" style={{ fontSize: '20px', fontWeight: 'bold', paddingLeft: '25px' }}>
-            {cartItems.length === 0 ? (
-              <div className="cart cart-header">Cart is empty</div>
-            ) : (
-              <div className="cart cart-header">
-                You have
-                {' '}
-                {cartItems.length}
-                {' '}
-                items in the cart.
-                {' '}
-              </div>
-            )}
-            {' '}
-          </Col>
-        </Row>
-        <Row>
-          <Col lg="9">
-            <div>
-              <hr />
-              <div className="productContainer">
-                {transformPaintings().map((painting) => (
-                  <SinglePainting
-                    key={painting.id}
-                    painting={painting}
-                    error={error}
-                    addToCart={addItemToCart}
-                    removeFromCart={removeItemFromCart}
-                    cartItems={cartItems}
-                  />
-                ))}
-              </div>
-            </div>
-          </Col>
-          <Col lg="3" />
-          <Col />
-        </Row>
+      <Row>
+        <Col lg="6" />
+        <Col
+          lg="1"
+          style={{
+            textAlign: 'right', marginRight: '0px', paddingRight: '0px', marginBottom: '0px',
+          }}
+        >
+          Sort by price:
+        </Col>
+        <Col
+          lg="2"
+          style={{
+            marginRight: '0px', marginLeft: '0px', paddingRight: '0px', paddingLeft: '10px',
+          }}
+        >
+          <Filters sortType={sortType} setSortType={setSortType} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          {' '}
+          <hr />
 
-      </Container>
+        </Col>
+      </Row>
 
+      <Row>
+        <Col lg="12">
+          <Row>
+            {transformPaintings().map((painting) => (
+              <Col>
+                <SinglePainting
+                  key={painting.id}
+                  painting={painting}
+                  error={error}
+                  addToCart={addItemToCart}
+                  removeFromCart={removeItemFromCart}
+                  cartItems={cartItems}
+                />
+              </Col>
+            ))}
+          </Row>
+        </Col>
+      </Row>
     </>
   );
 };

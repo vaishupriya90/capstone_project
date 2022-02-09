@@ -1,9 +1,5 @@
 /* header styles */
 
-.content{
-  font-family: 'IBM Plex Sans Thai Looped', sans-serif;
-}
-
 .homePage{
    background-image: url("https://images.unsplash.com/photo-1613746203812-717e6e5db3da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8YXJ0aXN0JTIwcGFpbnRpbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60");
    min-height: 100vh;
@@ -76,39 +72,8 @@
 
 /* Home Page */
 
-.home {
-  display: flex;
-}
-
-.filters {
-  background-color: #343a40;
-  color: white;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  width: 20%;
-  margin: 10px;
-  height: 86vh;
-}
-
-.filters > span {
-  padding-bottom: 20px;
-}
-
-.summary {
-  width: 30%;
-}
-
-
 .title {
   font-size: 30px;
-}
-
-.productContainer {
-  display: flex;
-  width: 90%;
-  padding: 20px;
-  padding-top: 0px;
 }
 
 .products {
@@ -160,25 +125,10 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
 /* Media Queries */
 @media (max-width: 771px) {
-  .filters {
-    width: 40%;
-    padding: 10px;
-    margin: 5px;
-  }
-
-  .filters > span {
-    font-size: 10px;
-  }
-
+  
   .title {
     font-size: 18px !important;
   }
-
-  .productContainer {
-    width: 58%;
-    padding: 0;
-  }
-
   .search {
     display: none !important;
   }
