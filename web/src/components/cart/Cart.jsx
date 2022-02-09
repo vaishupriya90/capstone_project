@@ -10,9 +10,9 @@ import {
 } from 'react-bootstrap';
 import { AiFillDelete } from 'react-icons/ai';
 
-import { changeQuantity, removeFromCart, clearCart } from '../redux/cart/cartSlice';
-import getCartItems from '../redux/cart/selectors';
-import OrderConfirmationModal from './order/OrderConfirmationModal';
+import { changeQuantity, removeFromCart, clearCart } from '../../redux/cart/cartSlice';
+import getCartItems from '../../redux/cart/selectors';
+import OrderConfirmationModal from '../order/OrderConfirmationModal';
 
 // eslint-disable-next-line react/prop-types
 const Cart = ({

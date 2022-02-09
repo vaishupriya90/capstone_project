@@ -15,9 +15,8 @@ import {
 import Filters from '../Filters';
 import SinglePainting from './SinglePainting';
 import LoadingDisplay from '../sharedComponents/LoadingDisplay';
-import SideCart from '../SideCart';
 
-export const Paintings = ({
+export const PaintingsComponent = ({
   paintings,
   fetchPaintings,
   isPaintingsLoading,
@@ -69,12 +68,26 @@ export const Paintings = ({
           <Col
             lg="2"
             style={{
-              marginRight: '0px', marginLeft: '0px', paddingRight: '0px', paddingLeft: '2px',
+              marginRight: '0px', marginLeft: '0px', paddingRight: '0px', paddingLeft: '10px',
             }}
           >
             <Filters sortType={sortType} setSortType={setSortType} />
           </Col>
-          <Col lg="3" />
+          <Col lg="3" style={{ fontSize: '20px', fontWeight: 'bold', paddingLeft: '25px' }}>
+            {cartItems.length === 0 ? (
+              <div className="cart cart-header">Cart is empty</div>
+            ) : (
+              <div className="cart cart-header">
+                You have
+                {' '}
+                {cartItems.length}
+                {' '}
+                items in the cart.
+                {' '}
+              </div>
+            )}
+            {' '}
+          </Col>
         </Row>
         <Row>
           <Col lg="9">
@@ -94,9 +107,7 @@ export const Paintings = ({
               </div>
             </div>
           </Col>
-          <Col lg="3">
-            <SideCart />
-          </Col>
+          <Col lg="3" />
           <Col />
         </Row>
 
@@ -106,7 +117,7 @@ export const Paintings = ({
   );
 };
 
-Paintings.defaultProps = {
+PaintingsComponent.defaultProps = {
   paintings: [],
   fetchPaintings: () => {},
   isPaintingsLoading: false,
@@ -117,7 +128,7 @@ Paintings.defaultProps = {
   searchValue: '',
 };
 
-Paintings.propTypes = {
+PaintingsComponent.propTypes = {
   paintings: PropTypes.arrayOf(paintingPropType),
   fetchPaintings: PropTypes.func,
   isPaintingsLoading: PropTypes.bool,
@@ -151,4 +162,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Paintings);
+export default connect(mapStateToProps, mapDispatchToProps)(PaintingsComponent);

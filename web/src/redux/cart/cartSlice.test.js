@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import cartReducer, { addToCart } from './cartSlice';
+import cartReducer, {
+  addToCart, changeQuantity, clearCart, removeFromCart,
+} from './cartSlice';
 import getCartItems from './selectors';
 
 const testPaintings = [
@@ -37,16 +39,68 @@ describe('cart', () => {
   });
 
   describe('addToCart', () => {
-    test('on success', async () => {
+    test('on add', async () => {
       const store = configureStore({
         reducer: {
           cartItems: cartReducer,
         },
       });
 
-      await store.dispatch(addToCart(testPaintings[0]));
+      store.dispatch(addToCart(testPaintings[0]));
+      store.dispatch(addToCart(testPaintings[1]));
 
-      expect(getCartItems(store.getState())).toEqual([{ painting: testPaintings[0], quantity: 1 }]);
+      expect(getCartItems(store.getState()))
+        .toEqual([
+          { painting: testPaintings[0], quantity: 1 },
+          { painting: testPaintings[1], quantity: 1 },
+        ]);
+    });
+  });
+
+  describe('remove from cart', () => {
+    test('on remove', async () => {
+      const store = configureStore({
+        reducer: { cartItems: cartReducer },
+      });
+      store.dispatch(addToCart(testPaintings[0]));
+      store.dispatch(addToCart(testPaintings[1]));
+      store.dispatch(removeFromCart(testPaintings[0]));
+      expect(getCartItems(store.getState())).toEqual([{ painting: testPaintings[1], quantity: 1 }]);
+    });
+  });
+
+  describe('change quantity', () => {
+    test('edit quantity', async () => {
+      const store = configureStore({
+        reducer: {
+          cartItems: cartReducer,
+        },
+      });
+      store.dispatch(addToCart(testPaintings[2]));
+      // await store.dispatch(addToCart(testPaintings[0]));
+      console.log(getCartItems(store.getState())[0].quantity);
+      store.dispatch(changeQuantity(testPaintings[2], 5));
+      console.log(getCartItems(store.getState())[0].quantity);
+      const updatedItem = getCartItems(store.getState())
+        .filter((p) => p.painting.id === testPaintings[2].id);
+      console.log(updatedItem);
+      expect(updatedItem[0].quantity).toBe(5);
+    });
+  });
+
+  describe('clear cart', () => {
+    test('empty the cart', async () => {
+      const store = configureStore({
+        reducer: {
+          cartItems: cartReducer,
+        },
+      });
+      store.dispatch(addToCart(testPaintings[1]));
+      store.dispatch(addToCart(testPaintings[2]));
+      store.dispatch(addToCart(testPaintings[0]));
+      expect(getCartItems(store.getState()).length).toEqual(3);
+      store.dispatch(clearCart());
+      expect(getCartItems(store.getState()).length).toEqual(0);
     });
   });
 });

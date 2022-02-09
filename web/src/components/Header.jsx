@@ -8,7 +8,7 @@ import {
 import { Link } from 'react-router-dom';
 import { search } from '../redux/filters/filter-actions';
 import UserLogin from './authentication/UserLogin';
-import CartDropDown from './CartDropDown';
+import CartDropDown from './cart/CartDropDown';
 
 export const Header = ({ searchText }) => {
   const { isAuthenticated, user } = useAuth0();

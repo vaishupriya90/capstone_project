@@ -14,6 +14,7 @@ const Filters = ({ sortType, setSortType }) => {
     <>
       <Form.Select
         size="sm"
+        style={{ width: '50%' }}
         id="sortType"
         value={sortType}
         onChange={handleChange}

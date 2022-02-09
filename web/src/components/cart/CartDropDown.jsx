@@ -3,8 +3,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Badge, Dropdown } from 'react-bootstrap';
 import { FaShoppingCart } from 'react-icons/fa';
-import getCartItems from '../redux/cart/selectors';
-import { removeFromCart } from '../redux/cart/cartSlice';
+import getCartItems from '../../redux/cart/selectors';
+import { removeFromCart } from '../../redux/cart/cartSlice';
 import CartDropDownMenuItem from './CartDropDownMenuItem';
 
 const CartDropDown = ({ cartItems, removeItemFromCart }) => {

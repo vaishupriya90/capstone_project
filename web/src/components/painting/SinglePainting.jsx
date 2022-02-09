@@ -25,9 +25,25 @@ const SinglePainting = ({
               </Card.Subtitle>
             </Col>
             <Col xs="8">
-              {cartItems.some((p) => p.painting.id === painting.id) ? (<Button variant="outline-danger" className="btn-fixed" onClick={() => removeFromCart(painting)}>Remove</Button>
-              ) : (<Button variant="dark" className="btn-fixed" onClick={() => addToCart(painting, 1)}>Add to cart</Button>
-              )}
+              {cartItems.some((p) => p.painting.id === painting.id)
+                ? (
+                  <Button
+                    variant="outline-danger"
+                    className="btn-fixed"
+                    onClick={() => removeFromCart(painting)}
+                  >
+                    Remove
+                  </Button>
+                )
+                : (
+                  <Button
+                    variant="dark"
+                    className="btn-fixed"
+                    onClick={() => addToCart(painting, 1)}
+                  >
+                    Add to cart
+                  </Button>
+                )}
             </Col>
           </Row>
 

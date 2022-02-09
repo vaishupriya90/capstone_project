@@ -9,11 +9,11 @@ import {
 } from 'react-bootstrap';
 import { AiFillDelete } from 'react-icons/ai';
 
-import { changeQuantity, removeFromCart, clearCart } from '../redux/cart/cartSlice';
-import getCartItems from '../redux/cart/selectors';
+import { changeQuantity, removeFromCart, clearCart } from '../../redux/cart/cartSlice';
+import getCartItems from '../../redux/cart/selectors';
 
 // eslint-disable-next-line react/prop-types
-const Cart = ({
+const SideCart = ({
   cartItems, removeItemFromCart, changeItemQuantity,
 }) => {
   const [total, setTotal] = useState();
@@ -28,24 +28,7 @@ const Cart = ({
 
     <div>
       <div className="side-cart">
-        <Row style={{ marginBottom: '15px' }}>
-          <Col style={{ fontSize: '20px', fontWeight: 'bold' }}>
-            {cartItems.length === 0 ? (
-              <div className="cart cart-header">Cart is empty</div>
-            ) : (
-              <div className="cart cart-header">
-                You have
-                {' '}
-                {cartItems.length}
-                {' '}
-                items in the cart.
-                {' '}
-              </div>
-
-            )}
-          </Col>
-          <hr />
-        </Row>
+        <hr />
         <ListGroup className="cart-items">
           {cartItems.map((item) => (
             <ListGroupItem key={item.paintingid}>
@@ -127,4 +110,4 @@ const mapDispatchToProps = (dispatch) => ({
   clearCartItems: () => dispatch(clearCart()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect(mapStateToProps, mapDispatchToProps)(SideCart);

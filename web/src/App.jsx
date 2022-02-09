@@ -3,8 +3,8 @@
 import { Routes, Route } from 'react-router';
 import Header from './components/Header';
 import Home from './components/Home';
-import Paintings from './components/painting/Paintings';
-import Cart from './components/Cart';
+import WrapperComponent from './components/WrapperComponent';
+import Cart from './components/cart/Cart';
 import OrderHistory from './components/order/OrderHistory';
 import './App.css';
 
@@ -14,7 +14,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/paintings" element={<Paintings />} />
+        <Route path="/paintings" element={<WrapperComponent />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orderHistory" element={<OrderHistory />} />
       </Routes>

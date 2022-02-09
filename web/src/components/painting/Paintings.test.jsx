@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Paintings } from './Paintings';
+import { PaintingsComponent } from './Paintings';
 
 const testPaintings = [
   {
@@ -29,12 +29,14 @@ const testPaintings = [
   },
 ];
 
+const addToCart = jest.fn();
+
 const renderTestObject = (customProps = {}) => {
   const props = {
     paintings: testPaintings,
     fetchPaintings: jest.fn(),
     paintingsLoaded: true,
-    addItemToCart: jest.fn(),
+    addItemToCart: addToCart,
     error: false,
     removeItemFromCart: jest.fn(),
     cartItems: [],
@@ -44,7 +46,7 @@ const renderTestObject = (customProps = {}) => {
     ...customProps,
   };
 
-  render(<Paintings {...props} />);
+  render(<PaintingsComponent {...props} />);
 };
 
 test('renders a list of paintings', async () => {
@@ -56,4 +58,12 @@ test('renders a list of paintings', async () => {
 test('renders error if fetching the name of the painting fails', async () => {
   renderTestObject({ error: true });
   expect(await screen.findByText('Oops! Could not fetch the list of paintings!')).toBeInTheDocument();
+});
+
+test('renders a list of paintings', async () => {
+  renderTestObject();
+  const button = (await screen.findAllByText('Add to cart'));
+  expect(button[0]).toBeInTheDocument();
+  button[0].click();
+  expect(addToCart).toHaveBeenCalled();
 });
