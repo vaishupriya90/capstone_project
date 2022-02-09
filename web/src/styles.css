@@ -5,13 +5,12 @@
 }
 
 .homePage{
-  /* background-image: url("https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGFpbnRpbmclMjBzaG9wfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"); */
    background-image: url("https://images.unsplash.com/photo-1613746203812-717e6e5db3da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8YXJ0aXN0JTIwcGFpbnRpbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60");
    min-height: 100vh;
    background-repeat: no-repeat;
    background-size: cover;
    background-position: center;
-}
+   text-align: center;  }
 
 .homeButton{
   display: block;
@@ -41,6 +40,24 @@
   width: 50px;
   height: 50px;
   object-fit: cover;
+}
+
+.right {
+  text-align: right;
+}
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.total > div {
+  font-size: 2rem;
+}
+
+.total > div,
+.total > button {
+  flex: 1;
 }
 
 .cartItemDetail {
@@ -133,6 +150,12 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
 .btn-fixed{
   width: 9em !important;
+}
+
+.side-cart{
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 15px;
 }
 
 /* Media Queries */

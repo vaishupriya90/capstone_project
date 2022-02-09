@@ -15,6 +15,7 @@ import {
 import Filters from '../Filters';
 import SinglePainting from './SinglePainting';
 import LoadingDisplay from '../sharedComponents/LoadingDisplay';
+import SideCart from '../SideCart';
 
 export const Paintings = ({
   paintings,
@@ -78,6 +79,7 @@ export const Paintings = ({
         <Row>
           <Col lg="9">
             <div>
+              <hr />
               <div className="productContainer">
                 {transformPaintings().map((painting) => (
                   <SinglePainting
@@ -91,6 +93,9 @@ export const Paintings = ({
                 ))}
               </div>
             </div>
+          </Col>
+          <Col lg="3">
+            <SideCart />
           </Col>
           <Col />
         </Row>

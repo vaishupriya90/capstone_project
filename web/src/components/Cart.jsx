@@ -93,6 +93,7 @@ const Cart = ({
           ))}
         </ListGroup>
 
+        { cartItems.length > 0 && (
         <div className="filters summary">
           <span>
             Subtotal (
@@ -104,14 +105,16 @@ const Cart = ({
             {' '}
             {total}
           </span>
-          <Button type="button" disabled={cartItems.length === 0} onClick={() => { handleClick(cartItems); }}>Proceed To Checkout</Button>
-
-          <OrderConfirmationModal
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            response={response}
-          />
+          <Button type="button" disabled={cartItems.length === 0} onClick={() => { handleClick(cartItems); }}>Place Order</Button>
         </div>
+        )}
+
+        <OrderConfirmationModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          response={response}
+        />
+
       </div>
     </div>
 

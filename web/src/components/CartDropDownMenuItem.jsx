@@ -35,8 +35,8 @@ const CartDropDownMenuItem = ({ cartItems, removeItemFromCart, onClick }) => (
           </>
         ))}
         <Link to="/cart">
-          <Button style={{ width: '95%', margin: '0 10px' }} onClick={onClick}>
-            Go To Cart
+          <Button variant="success" style={{ width: '95%', margin: '0 10px' }} onClick={onClick}>
+            Proceed To Checkout
           </Button>
         </Link>
       </>
