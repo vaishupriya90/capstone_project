@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using backend.Controllers;
 using backend.Models;
 using backend.Tests.Utils;
-using backend.ViewModels;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -36,16 +35,26 @@ namespace backend.Tests.Controllers
             [Fact]
             public async void WhenNewOrderIsAdded_ReturnsOkObject()
             {
-                IEnumerable<OrderRequestItem> orderItems = new IEnumerable();
-                var newOrderItem = new OrderRequestItem{PaintingId=1,Quantity=2};
-                orderItems.Add(newOrderItem);
-                var newOrder = new OrderRequest { UserEmail = "testemail@test.com",OrderItems = orderItems};
-                var response = await testObject.Post(newOrder);
-                var result = (response as CreatedResult).Value as Order;
-                result.Id.Should().BeGreaterThan(0);
-                result.UserEmail.Should().Be(newOrder.UserEmail);
-                result.OrderItems.Count().Should().Be(newOrder.OrderItems.Count());
+               
+                var orderRequestItems = new List<OrderRequestItem>();
+
+                var reqOrderItem1 = new OrderRequestItem { PaintingId = 1, Quantity = 2 };
+                var reqOrderItem2 = new OrderRequestItem { PaintingId = 2, Quantity = 2 };
+                orderRequestItems.Add(reqOrderItem1);
+                orderRequestItems.Add(reqOrderItem2);
+
+                var orderRequest = new OrderRequest
+                {
+                    UserEmail = "test@gamil.com",
+                    OrderItems = orderRequestItems
+                };
+                
+                var response = await testObject.Post(orderRequest);
+                var result = (response as CreatedResult).Value as OrderResponse;
+                result.UserEmail.Should().Be(orderRequest.UserEmail);
+                result.OrderItems.Count().Should().Be(orderRequest.OrderItems.Count());
             }
+
         }
     }
 }
