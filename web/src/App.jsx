@@ -7,6 +7,7 @@ import Home from './components/Home';
 import ProductLayout from './components/ProductLayout';
 import Cart from './components/cart/Cart';
 import OrderHistory from './components/order/OrderHistory';
+import Checkout from './components/cart/Checkout';
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/paintings" element={<ProductLayout />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/orderHistory" element={<OrderHistory />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Container>
     </div>

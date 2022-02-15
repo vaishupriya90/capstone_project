@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
 
@@ -13,6 +14,7 @@ import { AiFillDelete } from 'react-icons/ai';
 import { changeQuantity, removeFromCart, clearCart } from '../../redux/cart/cartSlice';
 import getCartItems from '../../redux/cart/selectors';
 import OrderConfirmationModal from '../order/OrderConfirmationModal';
+import Checkout from './Checkout';
 
 // eslint-disable-next-line react/prop-types
 const Cart = ({
@@ -51,8 +53,32 @@ const Cart = ({
     setTotal(calculateTotal);
   }, [cartItems]);
 
+  const formInitialValues = {
+    firstName: '',
+    lastName: '',
+    address: '',
+    city: '',
+    state: '',
+    zip: '',
+    nameOnCard: '',
+    creditCardNumber: '',
+    expiration: '',
+    cvv: '',
+  };
+
+  const [checkoutDetails, setCheckoutDetails] = React.useState(formInitialValues);
+
+  const setFormValues = (currCheckoutDetails) => {
+    setCheckoutDetails(currCheckoutDetails);
+    console.log(`Current: ${JSON.stringify(currCheckoutDetails)}`);
+    handleClick(cartItems);
+  };
+
+  console.log(`checkout details outside: ${JSON.stringify(checkoutDetails)}`);
+
   return (
     <>
+      <Checkout formInitialValues={checkoutDetails} handleFormClick={setFormValues} />
       <Row>
         <Col lg="9">
           <Row>
@@ -114,7 +140,8 @@ const Cart = ({
                   {' '}
                   {total}
                 </div>
-                <Button type="button" disabled={cartItems.length === 0} onClick={() => { handleClick(cartItems); }}>Place Order</Button>
+                {/* <Button type="button" disabled={cartItems.length === 0}
+                //onClick={() => { handleClick(cartItems); }}>Place Order</Button> */}
               </div>
               )}
             </Col>
