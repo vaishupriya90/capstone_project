@@ -3,7 +3,6 @@
 
 import { connect } from 'react-redux';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import {
   Button, FormControl, ListGroup, ListGroupItem, Row, Col,
 } from 'react-bootstrap';
@@ -11,6 +10,7 @@ import { AiFillDelete } from 'react-icons/ai';
 
 import { changeQuantity, removeFromCart, clearCart } from '../../redux/cart/cartSlice';
 import getCartItems from '../../redux/cart/selectors';
+import CheckoutButton from './CheckoutButton';
 
 // eslint-disable-next-line react/prop-types
 const SideCart = ({
@@ -94,16 +94,7 @@ const SideCart = ({
                 {total}
               </Col>
               <Col lg="7">
-                <Link to="/cart">
-                  <Button
-                    type="button"
-                    disabled={cartItems.length === 0}
-                    variant="success"
-                    size="md"
-                  >
-                    Proceed To Checkout
-                  </Button>
-                </Link>
+                <CheckoutButton cartItems={cartItems} />
               </Col>
             </Row>
           </div>

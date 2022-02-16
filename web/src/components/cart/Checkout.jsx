@@ -180,7 +180,7 @@ export default function Checkout({ formInitialValues, handleFormClick }) {
               </Row>
               <Row>
                 <Col lg="4">
-                  <Button type="submit">Submit form</Button>
+                  <Button type="submit" variant="success">Place Order</Button>
                 </Col>
                 <Col lg="8" />
               </Row>
