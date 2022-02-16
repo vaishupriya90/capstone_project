@@ -6,14 +6,44 @@ import {
   Row, Col, Form, Button, InputGroup,
 } from 'react-bootstrap';
 import { useFormik, Formik } from 'formik';
+import * as yup from 'yup';
 
 export default function Checkout({ formInitialValues, handleFormClick }) {
+  const schema = yup.object().shape({
+    firstName: yup.string().required('Please enter your first Name'),
+    lastName: yup.string().required('Please enter your first Name'),
+    address: yup.string().required('Please enter your Address'),
+    city: yup.string().required(),
+    state: yup.string().required(),
+    zip: yup.string()
+      .required()
+      .matches(/^[0-9]+$/, 'Must be only digits')
+      .min(5, 'Must be exactly 5 digits')
+      .max(5, 'Must be exactly 5 digits'),
+    nameOnCard: yup.string().required('* This is a required field'),
+    creditCardNumber: yup.string()
+      .required()
+      .matches(/^[0-9]+$/, 'Must be only digits')
+      .min(16, 'Must be exactly 16 digits')
+      .max(16, 'Must be exactly 16 digits'),
+    expiration: yup.string().required(),
+    cvv: yup.string()
+      .required()
+      .matches(/^[0-9]+$/, 'Must be only digits')
+      .min(3, 'Must be exactly 3 digits')
+      .max(3, 'Must be exactly 3 digits'),
+  });
+
   const onSubmitFunc = (values) => {
     handleFormClick(values);
   };
 
   return (
-    <Formik onSubmit={onSubmitFunc} initialValues={formInitialValues}>
+    <Formik
+      validationSchema={schema}
+      onSubmit={onSubmitFunc}
+      initialValues={formInitialValues}
+    >
       {({
         handleSubmit,
         handleChange,
