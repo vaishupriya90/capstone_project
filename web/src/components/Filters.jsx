@@ -1,43 +1,30 @@
+/* eslint-disable no-console */
 /* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import { Form } from 'react-bootstrap';
 import '../styles.css';
 
 // eslint-disable-next-line react/prop-types
-const Filters = ({ sortType, setSortType }) => (
-  <div className="filters">
-    <span className="title">Sort by price :</span>
-    <span>
-      <Form.Check
-        inline
-        label="Low to High"
-        name="group1"
-        type="radio"
-        id="inline-1"
-        onChange={() => setSortType('lowToHigh')}
-        checked={sortType === 'lowToHigh'}
-      />
-    </span>
-    <span>
-      <Form.Check
-        inline
-        label="High to Low"
-        name="group1"
-        type="radio"
-        id="inline-2"
-        onChange={() => setSortType('highToLow')}
-        checked={sortType === 'highToLow'}
-      />
-    </span>
+const Filters = ({ sortType, setSortType }) => {
+  const handleChange = React.useCallback((event) => {
+    setSortType(event.target.value);
+  });
 
-    {/* <Button
-      variant="light"
-      // onClick={() => productDispatch({
-      //   type: 'CLEAR_FILTERS',
-      // })}
-    >
-      Clear Filters
-    </Button> */}
-  </div>
-);
+  return (
+    <>
+      <Form.Select
+        size="sm"
+        style={{ width: '50%' }}
+        id="sortType"
+        value={sortType}
+        onChange={handleChange}
+        name="sortType"
+      >
+        <option value="lowToHigh">Low To High</option>
+        <option value="highToLow">High To Low</option>
+      </Form.Select>
+    </>
+  );
+};
 
 export default Filters;

@@ -2,6 +2,7 @@ import '../../styles.css';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Row, Col } from 'react-bootstrap';
 import { addToCart, removeFromCart } from '../../redux/cart/cartSlice';
 import { searchByValue } from '../../redux/filters/filtersSlice';
 import paintingPropType from '../../propTypes/paintingPropType';
@@ -15,7 +16,7 @@ import Filters from '../Filters';
 import SinglePainting from './SinglePainting';
 import LoadingDisplay from '../sharedComponents/LoadingDisplay';
 
-export const Paintings = ({
+export const PaintingsComponent = ({
   paintings,
   fetchPaintings,
   isPaintingsLoading,
@@ -25,7 +26,7 @@ export const Paintings = ({
   cartItems,
   searchValue,
 }) => {
-  const [sortType, setSortType] = useState('');
+  const [sortType, setSortType] = useState('lowToHigh');
 
   useEffect(() => {
     fetchPaintings();
@@ -52,26 +53,57 @@ export const Paintings = ({
   };
 
   return (
-    <div className="home">
-      <Filters sortType={sortType} setSortType={setSortType} />
-      <div className="productContainer">
-        {transformPaintings().map((painting) => (
-          <SinglePainting
-            key={painting.id}
-            painting={painting}
-            error={error}
-            addToCart={addItemToCart}
-            removeFromCart={removeItemFromCart}
-            cartItems={cartItems}
-          />
-        ))}
-      </div>
-    </div>
+    <>
+      <Row>
+        <Col lg="6" />
+        <Col
+          lg="1"
+          style={{
+            textAlign: 'right', marginRight: '0px', paddingRight: '0px', marginBottom: '0px',
+          }}
+        >
+          Sort by price:
+        </Col>
+        <Col
+          lg="2"
+          style={{
+            marginRight: '0px', marginLeft: '0px', paddingRight: '0px', paddingLeft: '10px',
+          }}
+        >
+          <Filters sortType={sortType} setSortType={setSortType} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          {' '}
+          <hr />
 
+        </Col>
+      </Row>
+
+      <Row>
+        <Col lg="12">
+          <Row>
+            {transformPaintings().map((painting) => (
+              <Col>
+                <SinglePainting
+                  key={painting.id}
+                  painting={painting}
+                  error={error}
+                  addToCart={addItemToCart}
+                  removeFromCart={removeItemFromCart}
+                  cartItems={cartItems}
+                />
+              </Col>
+            ))}
+          </Row>
+        </Col>
+      </Row>
+    </>
   );
 };
 
-Paintings.defaultProps = {
+PaintingsComponent.defaultProps = {
   paintings: [],
   fetchPaintings: () => {},
   isPaintingsLoading: false,
@@ -82,7 +114,7 @@ Paintings.defaultProps = {
   searchValue: '',
 };
 
-Paintings.propTypes = {
+PaintingsComponent.propTypes = {
   paintings: PropTypes.arrayOf(paintingPropType),
   fetchPaintings: PropTypes.func,
   isPaintingsLoading: PropTypes.bool,
@@ -116,4 +148,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Paintings);
+export default connect(mapStateToProps, mapDispatchToProps)(PaintingsComponent);

@@ -1,6 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import { Button } from 'react-bootstrap';
 import { FcApproval } from 'react-icons/fc';
@@ -29,7 +30,7 @@ const OrderConfirmationModal = (props) => (
           you will receive an email confirmation with details of the order
         </h6>
       </Modal.Body>
-      <Button onClick={props.onHide}>Close</Button>
+      <Link to="/paintings"><Button onClick={props.onHide}>Continue Shopping!</Button></Link>
       <Modal.Footer />
     </Modal>
   </div>
