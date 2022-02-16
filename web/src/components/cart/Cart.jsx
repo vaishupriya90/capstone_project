@@ -77,85 +77,81 @@ const Cart = ({
   console.log(`checkout details outside: ${JSON.stringify(checkoutDetails)}`);
 
   return (
-    <>
-      <Checkout formInitialValues={checkoutDetails} handleFormClick={setFormValues} />
-      <Row>
-        <Col lg="9">
-          <Row>
-            <Col>
-              <ListGroup>
-                {cartItems.map((prod) => (
-                  <ListGroup.Item key={prod.painting.id}>
-                    <Row>
-                      <Col md={2}>
-                        <Image className="ListItemImage" src={prod.painting.image} alt={prod.painting.name} fluid rounded />
-                      </Col>
-                      <Col md={4}>
-                        <span>{prod.painting.name}</span>
-                      </Col>
-                      <Col lg={2}>
-                        $
-                        {prod.painting.price}
-                      </Col>
-                      <Col lg={2}>
-                        <FormControl
-                          as="select"
-                          value={prod.quantity}
-                          onChange={(e) => changeItemQuantity(prod.painting, e.target.value)}
-                        >
-                          {[...Array(prod.painting.availableQuantity).keys()].map((x) => (
-                            <option key={x + 1}>{x + 1}</option>
-                          ))}
-                        </FormControl>
-                      </Col>
-                      <Col lg={2}>
-                        <Button
-                          type="button"
-                          variant="light"
-                          onClick={() => removeItemFromCart(prod.painting)}
-                        >
-                          <AiFillDelete fontSize="20px" />
-                        </Button>
-                      </Col>
-                    </Row>
-                  </ListGroup.Item>
-                ))}
-              </ListGroup>
-            </Col>
-          </Row>
-        </Col>
-        <Col lg="3">
-          <Row>
-            <Col lg="12">
-
-              { cartItems.length > 0 && (
-              <div>
-                <div>
-                  Subtotal (
-                  {cartItems.length}
-                  ) Items
-                </div>
-                <div>
-                  Total: $
-                  {' '}
-                  {total}
-                </div>
-                {/* <Button type="button" disabled={cartItems.length === 0}
+    <Row>
+      <Col lg="9">
+        <Checkout formInitialValues={checkoutDetails} handleFormClick={setFormValues} />
+      </Col>
+      <Col>
+        <Row>
+          <Col>
+            <Row>
+              <Col>
+                <ListGroup>
+                  {cartItems.map((prod) => (
+                    <ListGroup.Item key={prod.painting.id}>
+                      <Row>
+                        <Col md={2}>
+                          <Image className="ListItemImage" src={prod.painting.image} alt={prod.painting.name} fluid rounded />
+                        </Col>
+                        <Col md={4}>
+                          <span>{prod.painting.name}</span>
+                        </Col>
+                        <Col lg={2}>
+                          $
+                          {prod.painting.price}
+                        </Col>
+                        <Col lg={2}>
+                          <FormControl
+                            as="select"
+                            value={prod.quantity}
+                            onChange={(e) => changeItemQuantity(prod.painting, e.target.value)}
+                          >
+                            {[...Array(prod.painting.availableQuantity).keys()].map((x) => (
+                              <option key={x + 1}>{x + 1}</option>
+                            ))}
+                          </FormControl>
+                        </Col>
+                        <Col lg={2}>
+                          <Button
+                            type="button"
+                            variant="light"
+                            onClick={() => removeItemFromCart(prod.painting)}
+                          >
+                            <AiFillDelete fontSize="20px" />
+                          </Button>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  ))}
+                </ListGroup>
+                { cartItems.length > 0 && (
+                  <div>
+                    <div>
+                      Subtotal (
+                      {cartItems.length}
+                      ) Items
+                    </div>
+                    <div>
+                      Total: $
+                      {' '}
+                      {total}
+                    </div>
+                    {/* <Button type="button" disabled={cartItems.length === 0}
                 //onClick={() => { handleClick(cartItems); }}>Place Order</Button> */}
-              </div>
-              )}
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-      <OrderConfirmationModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        response={response}
-      />
+                  </div>
+                )}
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+        <OrderConfirmationModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          response={response}
+        />
+      </Col>
 
-    </>
-
+    </Row>
   );
 };
 
