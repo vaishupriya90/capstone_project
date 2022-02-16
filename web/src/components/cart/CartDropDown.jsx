@@ -21,7 +21,7 @@ const CartDropDown = ({ cartItems, removeItemFromCart }) => {
   return (
     <Dropdown show={showDropDown}>
       <Dropdown.Toggle variant="rgb(44, 114, 85" onClick={toggleDropDown}>
-        <FaShoppingCart color="white" fontSize="30px" />
+        <FaShoppingCart color="white" size={32} />
         <Badge bg="rgb(44, 114, 85">{cartItems.length}</Badge>
       </Dropdown.Toggle>
       <CartDropDownMenuItem
