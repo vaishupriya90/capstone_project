@@ -1,10 +1,14 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import { BsPersonSquare } from 'react-icons/bs';
 import { Dropdown } from 'react-bootstrap';
+import { clearCart } from '../../redux/cart/cartSlice';
+import getCartItems from '../../redux/cart/selectors';
 
-const UserLogin = () => {
+const UserLogin = ({ clearCartItems }) => {
   const {
     loginWithRedirect, logout, isAuthenticated,
   } = useAuth0();
@@ -24,9 +28,12 @@ const UserLogin = () => {
           </Dropdown.Item>
         ) : (
           <>
-            <Dropdown.Item onClick={() => logout({
-              returnTo: 'http://localhost:3000/',
-            })}
+            <Dropdown.Item onClick={() => {
+              logout({
+                returnTo: 'http://localhost:3000/',
+              });
+              clearCartItems();
+            }}
             >
               Logout
             </Dropdown.Item>
@@ -43,4 +50,11 @@ const UserLogin = () => {
   );
 };
 
-export default UserLogin;
+const mapStateToProps = (state) => ({
+  cartItems: getCartItems(state),
+});
+const mapDispatchToProps = (dispatch) => ({
+  clearCartItems: () => dispatch(clearCart()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserLogin);
