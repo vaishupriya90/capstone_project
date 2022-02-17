@@ -137,6 +137,78 @@ namespace backend.Migrations
                             Image = "https://images.unsplash.com/photo-1588522943401-6ba285f692de?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDMwfGJvOGpRS1RhRTBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
                             Name = "Black bird perched on tree",
                             Price = 87.0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AvailableQuantity = 5,
+                            Description = "Some Description",
+                            Image = "https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1058&q=80",
+                            Name = "Abstarct art",
+                            Price = 299.0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AvailableQuantity = 5,
+                            Description = "Some Description",
+                            Image = "https://images.unsplash.com/photo-1584285405429-136bf988919c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80",
+                            Name = "Arts & Culture",
+                            Price = 87.0
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AvailableQuantity = 5,
+                            Description = "Some Description",
+                            Image = "https://images.unsplash.com/photo-1578763460789-324a7fcc0ee2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1409&q=80",
+                            Name = "Twin birds",
+                            Price = 164.0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AvailableQuantity = 5,
+                            Description = "Some Description",
+                            Image = "https://i.pinimg.com/474x/2b/17/2d/2b172d14b9352972de753e04b853bf9b.jpg",
+                            Name = "WaterFall",
+                            Price = 99.0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AvailableQuantity = 5,
+                            Description = "Some Description",
+                            Image = "https://images.unsplash.com/photo-1588522943401-6ba285f692de?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDMwfGJvOGpRS1RhRTBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+                            Name = "Black bird perched on tree",
+                            Price = 87.0
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AvailableQuantity = 5,
+                            Description = "Some Description",
+                            Image = "https://blogger.googleusercontent.com/img/a/AVvXsEgui3Zr0h5jHPi86tbI7mtTU8-NRuGjchaLyisjIEhWBAdB29fX-bOKOwJCIkotiMNdREYZDAhVxwFyqnSN3xy2PIJlqE_7_zjQjP7Z5WC6ndNwWLD8l45jGFb11CSIDTr2n251OREkSfgPXopiCK_e6wfDU45WwV29LC133uhrTi6WmNn6yL9v1OxQ=s320",
+                            Name = "Red Umbrella",
+                            Price = 120.0
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AvailableQuantity = 5,
+                            Description = "Some Description",
+                            Image = "https://www.artisticaly.com/assets/Easy-Acrylic-Paintings-Ideas-for-Beginners-32.jpg",
+                            Name = "Sunset Swing",
+                            Price = 225.0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AvailableQuantity = 5,
+                            Description = "Some Description",
+                            Image = "https://www.artisticaly.com/assets/Easy-Acrylic-Paintings-Ideas-for-Beginners-14.jpg",
+                            Name = "Aurora",
+                            Price = 95.0
                         });
                 });
 
