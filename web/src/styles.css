@@ -75,8 +75,12 @@
   font-size: 30px;
 }
 
-.products {
+.product {
   width: 18rem;
+  margin: 1rem;
+}
+.products {
+  display: flex;
 }
 
 .productImage{
@@ -120,6 +124,11 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding-left: 0px;
   padding-right: 0px;
   margin-left: 15px;
+}
+
+.checkout-border{
+  border-style:solid;
+  padding: 50px;
 }
 
 /* Media Queries */

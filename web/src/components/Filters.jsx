@@ -11,19 +11,20 @@ const Filters = ({ sortType, setSortType }) => {
   });
 
   return (
-    <>
-      <Form.Select
-        size="sm"
-        style={{ width: '50%' }}
-        id="sortType"
-        value={sortType}
-        onChange={handleChange}
-        name="sortType"
-      >
-        <option value="lowToHigh">Low To High</option>
-        <option value="highToLow">High To Low</option>
-      </Form.Select>
-    </>
+    <Form className="d-flex">
+      <Form.Group>
+        <Form.Select
+          size="sm"
+          id="sortType"
+          value={sortType}
+          onChange={handleChange}
+          name="sortType"
+        >
+          <option value="lowToHigh">Low To High</option>
+          <option value="highToLow">High To Low</option>
+        </Form.Select>
+      </Form.Group>
+    </Form>
   );
 };
 

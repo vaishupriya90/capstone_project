@@ -16,7 +16,7 @@ const UserLogin = ({ clearCartItems }) => {
   return (
     <Dropdown align="end">
       <Dropdown.Toggle variant="rgb(44, 114, 85">
-        <BsPersonSquare color="white" fontSize="40px" />
+        <BsPersonSquare color="white" size={32} />
       </Dropdown.Toggle>
       <Dropdown.Menu style={{ minWidth: 300 }}>
         {!isAuthenticated ? (

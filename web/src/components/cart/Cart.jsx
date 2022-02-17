@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import {
-  Button, ListGroup, Row, Col, Image, FormControl,
+  Button, ListGroup, Row, Col, FormControl, ListGroupItem,
 } from 'react-bootstrap';
 import { AiFillDelete } from 'react-icons/ai';
 
@@ -77,54 +77,64 @@ const Cart = ({
   console.log(`checkout details outside: ${JSON.stringify(checkoutDetails)}`);
 
   return (
-    <Row>
-      <Col lg="9">
-        <Checkout formInitialValues={checkoutDetails} handleFormClick={setFormValues} />
-      </Col>
-      <Col>
-        <Row>
-          <Col>
-            <Row>
-              <Col>
-                <ListGroup>
-                  {cartItems.map((prod) => (
-                    <ListGroup.Item key={prod.painting.id}>
-                      <Row>
-                        <Col md={2}>
-                          <Image className="ListItemImage" src={prod.painting.image} alt={prod.painting.name} fluid rounded />
-                        </Col>
-                        <Col md={4}>
-                          <span>{prod.painting.name}</span>
-                        </Col>
-                        <Col lg={2}>
-                          $
-                          {prod.painting.price}
-                        </Col>
-                        <Col lg={2}>
-                          <FormControl
-                            as="select"
-                            value={prod.quantity}
-                            onChange={(e) => changeItemQuantity(prod.painting, e.target.value)}
-                          >
-                            {[...Array(prod.painting.availableQuantity).keys()].map((x) => (
-                              <option key={x + 1}>{x + 1}</option>
-                            ))}
-                          </FormControl>
-                        </Col>
-                        <Col lg={2}>
-                          <Button
-                            type="button"
-                            variant="light"
-                            onClick={() => removeItemFromCart(prod.painting)}
-                          >
-                            <AiFillDelete fontSize="20px" />
-                          </Button>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
-                { cartItems.length > 0 && (
+    <>
+      {cartItems.length === 0 && (<div>cart is empty!</div>)}
+      <Row>
+        <Col lg="9">
+          <Checkout formInitialValues={checkoutDetails} handleFormClick={setFormValues} />
+        </Col>
+        <Col>
+          <Row>
+            <Col>
+              <Row>
+                <Col>
+                  <ListGroup className="cart-items">
+                    {cartItems.map((item) => (
+                      <ListGroupItem key={item.paintingid}>
+                        <Row>
+                          <Col lg="2">
+                            <img className="cartItemImg" src={item.painting.image} alt={item.painting.name} />
+                          </Col>
+                          <Col lg="5">
+                            {item.painting.name}
+                            <br />
+                            $
+                            {item.painting.price}
+                            {' '}
+                            x
+                            {' '}
+                            {item.quantity}
+                            {' '}
+                          </Col>
+                          <Col lg="3">
+                            Qty
+                            <br />
+                            <FormControl
+                              as="select"
+                              value={item.quantity}
+                              onChange={(e) => changeItemQuantity(item.painting, e.target.value)}
+                              style={{ width: '50%' }}
+                            >
+                              {[...Array(item.painting.availableQuantity).keys()].map((x) => (
+                                <option key={x + 1}>{x + 1}</option>
+                              ))}
+                            </FormControl>
+                          </Col>
+                          <Col>
+                            <Button
+                              type="button"
+                              variant="light"
+                              onClick={() => removeItemFromCart(item.painting)}
+                            >
+                              <AiFillDelete />
+                            </Button>
+                          </Col>
+
+                        </Row>
+                      </ListGroupItem>
+                    ))}
+                  </ListGroup>
+                  { cartItems.length > 0 && (
                   <div>
                     <div>
                       Subtotal (
@@ -139,19 +149,21 @@ const Cart = ({
                     {/* <Button type="button" disabled={cartItems.length === 0}
                 //onClick={() => { handleClick(cartItems); }}>Place Order</Button> */}
                   </div>
-                )}
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-        <OrderConfirmationModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          response={response}
-        />
-      </Col>
+                  )}
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <OrderConfirmationModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            response={response}
+          />
+        </Col>
 
-    </Row>
+      </Row>
+    </>
+
   );
 };
 
