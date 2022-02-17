@@ -75,6 +75,7 @@ export default function Checkout({ formInitialValues, handleFormClick }) {
                       name="lastName"
                       value={values.lastName}
                       onChange={handleChange}
+                      isInvalid={errors.lastName}
                     />
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   </Form.Group>
@@ -214,7 +215,7 @@ export default function Checkout({ formInitialValues, handleFormClick }) {
                 <br />
                 <br />
                 <Row>
-                  <Col lg="10" className="d-grid gap-2"><Button type="submit" variant="success" size="lg">Place Order</Button></Col>
+                  <Col lg="10" className="d-grid gap-2"><Button type="submit" variant="dark" size="lg">Place your Order!</Button></Col>
                   <Col lg="2" />
                 </Row>
               </Col>

@@ -24,7 +24,7 @@ const CheckoutButton = ({ cartItems }) => {
         <Button
           type="button"
           disabled
-          variant="success"
+          variant="dark"
           size="md"
         >
           Proceed To Checkout
@@ -37,7 +37,7 @@ const CheckoutButton = ({ cartItems }) => {
     <Button
       onClick={handleClick}
       type="button"
-      variant="success"
+      variant="dark"
       size="md"
     >
       Proceed To Checkout

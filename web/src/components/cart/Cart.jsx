@@ -146,8 +146,6 @@ const Cart = ({
                       {' '}
                       {total}
                     </div>
-                    {/* <Button type="button" disabled={cartItems.length === 0}
-                //onClick={() => { handleClick(cartItems); }}>Place Order</Button> */}
                   </div>
                   )}
                 </Col>

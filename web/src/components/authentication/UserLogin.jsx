@@ -40,7 +40,7 @@ const UserLogin = ({ clearCartItems }) => {
 
             <div className="dropdown-divider" />
 
-            <Link to="/orderHistory"><Dropdown.Item href="#/action-2"> Pruchase History</Dropdown.Item></Link>
+            <Link to="/orderHistory"><Dropdown.Item href="#/action-2"> Purchase History</Dropdown.Item></Link>
           </>
         )}
 
