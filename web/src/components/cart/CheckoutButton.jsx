@@ -12,10 +12,11 @@ const CheckoutButton = ({ cartItems }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if (!isAuthenticated) {
+    if (isAuthenticated) {
+      navigate('/cart');
+    } else {
       loginWithRedirect();
     }
-    navigate('/cart');
   };
   if (cartItems.length === 0) {
     return (
