@@ -82,21 +82,21 @@ export const PaintingsComponent = ({
       </Row>
 
       <Row>
-        <Col lg="12">
-          <Row>
-            {transformPaintings().map((painting) => (
-              <Col>
-                <SinglePainting
-                  key={painting.id}
-                  painting={painting}
-                  error={error}
-                  addToCart={addItemToCart}
-                  removeFromCart={removeItemFromCart}
-                  cartItems={cartItems}
-                />
-              </Col>
-            ))}
-          </Row>
+        <Col lg="12" className="products">
+
+          {transformPaintings().map((painting) => (
+
+            <SinglePainting
+              key={painting.id}
+              painting={painting}
+              error={error}
+              addToCart={addItemToCart}
+              removeFromCart={removeItemFromCart}
+              cartItems={cartItems}
+            />
+
+          ))}
+
         </Col>
       </Row>
     </>

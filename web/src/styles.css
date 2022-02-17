@@ -75,8 +75,12 @@
   font-size: 30px;
 }
 
-.products {
+.product {
   width: 18rem;
+  margin: 1rem;
+}
+.products {
+  display: flex;
 }
 
 .productImage{
