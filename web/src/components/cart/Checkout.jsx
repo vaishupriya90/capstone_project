@@ -147,8 +147,8 @@ export default function Checkout({ formInitialValues, handleFormClick }) {
               <Col>
                 <h5>Payment Details:</h5>
                 <hr />
-                <Row className="mb-3">
-                  <Form.Group as={Col} md="3" controlId="validationFormik05">
+                <Row>
+                  <Form.Group as={Col} md="6" controlId="validationFormik05">
                     <Form.Label>Name on card</Form.Label>
                     <Form.Control
                       type="text"
@@ -157,6 +157,8 @@ export default function Checkout({ formInitialValues, handleFormClick }) {
                       value={values.nameOnCard}
                       onChange={handleChange}
                       isInvalid={!!errors.nameOnCard}
+                      size={25}
+                      maxLength={25}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.nameOnCard}
@@ -164,7 +166,7 @@ export default function Checkout({ formInitialValues, handleFormClick }) {
                   </Form.Group>
                 </Row>
                 <Row>
-                  <Form.Group as={Col} md="3" controlId="validationFormik05">
+                  <Form.Group as={Col} md="6" controlId="validationFormik05">
                     <Form.Label>Credit Card</Form.Label>
                     <Form.Control
                       type="text"
@@ -209,14 +211,15 @@ export default function Checkout({ formInitialValues, handleFormClick }) {
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Row>
+                <br />
+                <br />
                 <Row>
-                  <Col lg="4">
-                    <Button type="submit" variant="success">Place Order</Button>
-                  </Col>
-                  <Col lg="8" />
+                  <Col lg="10" className="d-grid gap-2"><Button type="submit" variant="success" size="lg">Place Order</Button></Col>
+                  <Col lg="2" />
                 </Row>
               </Col>
             </Row>
+
           </Form>
         </div>
       )}

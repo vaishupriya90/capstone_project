@@ -55,7 +55,7 @@ export const PaintingsComponent = ({
   return (
     <>
       <Row>
-        <Col lg="6" />
+        <Col lg="9" />
         <Col
           lg="1"
           style={{
