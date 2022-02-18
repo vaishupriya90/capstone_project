@@ -48,7 +48,7 @@ const OrderConfirmationModal = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <div d-flex>
-            <Link to="/paintings"><Button variant="success" onClick={props.onHide}>Continue Shopping!</Button></Link>
+            <Link to="/paintings"><Button variant="dark" onClick={props.onHide}>Continue Shopping!</Button></Link>
           </div>
 
         </Modal.Footer>

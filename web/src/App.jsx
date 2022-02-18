@@ -13,7 +13,13 @@ import './App.css';
 function App() {
   return (
     <div className="content">
-      <Container fluid>
+      <Container
+        fluid
+        style={{
+          paddingLeft: '0px',
+          paddingRight: '0px',
+        }}
+      >
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
