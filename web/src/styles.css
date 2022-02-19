@@ -141,6 +141,7 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-style:solid;
   padding: 50px;
   margin-left: 10px;
+  border: 1px solid rgba(0,0,0,.125)
 }
 
 /* Media Queries */

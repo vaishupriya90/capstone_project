@@ -5,30 +5,30 @@ import React from 'react';
 import {
   Row, Col, Form, Button, InputGroup,
 } from 'react-bootstrap';
-import { useFormik, Formik } from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
 
 export default function Checkout({ formInitialValues, handleFormClick }) {
   const schema = yup.object().shape({
-    firstName: yup.string().required('Please enter your first Name'),
-    lastName: yup.string().required('Please enter your first Name'),
+    firstName: yup.string().required('Please enter your First Name'),
+    lastName: yup.string().required('Please enter your Last Name'),
     address: yup.string().required('Please enter your Address'),
-    city: yup.string().required(),
-    state: yup.string().required(),
+    city: yup.string().required('Please enter the City'),
+    state: yup.string().required('Please enter the State'),
     zip: yup.string()
-      .required()
+      .required('Please enter 5 digit Zip code')
       .matches(/^[0-9]+$/, 'Must be only digits')
       .min(5, 'Must be exactly 5 digits')
       .max(5, 'Must be exactly 5 digits'),
-    nameOnCard: yup.string().required('* This is a required field'),
+    nameOnCard: yup.string().required('Please enter card holder full name.'),
     creditCardNumber: yup.string()
-      .required()
+      .required('Please enter 16 digit credit card number')
       .matches(/^[0-9]+$/, 'Must be only digits')
       .min(16, 'Must be exactly 16 digits')
       .max(16, 'Must be exactly 16 digits'),
-    expiration: yup.string().required(),
+    expiration: yup.string().required('Please enter card expiration in MM/YY format'),
     cvv: yup.string()
-      .required()
+      .required('Please enter CVV')
       .matches(/^[0-9]+$/, 'Must be only digits')
       .min(3, 'Must be exactly 3 digits')
       .max(3, 'Must be exactly 3 digits'),
@@ -77,7 +77,7 @@ export default function Checkout({ formInitialValues, handleFormClick }) {
                       onChange={handleChange}
                       isInvalid={errors.lastName}
                     />
-                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid">{errors.lastName}</Form.Control.Feedback>
                   </Form.Group>
                   <Col lg="4" />
                 </Row>
@@ -90,7 +90,7 @@ export default function Checkout({ formInitialValues, handleFormClick }) {
                       name="address"
                       value={values.address}
                       onChange={handleChange}
-                      isInvalid={!!errors.address}
+                      isInvalid={errors.address}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.address}
@@ -106,7 +106,7 @@ export default function Checkout({ formInitialValues, handleFormClick }) {
                       name="city"
                       value={values.city}
                       onChange={handleChange}
-                      isInvalid={!!errors.city}
+                      isInvalid={errors.city}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.city}
@@ -122,7 +122,7 @@ export default function Checkout({ formInitialValues, handleFormClick }) {
                       name="state"
                       value={values.state}
                       onChange={handleChange}
-                      isInvalid={!!errors.state}
+                      isInvalid={errors.state}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.state}
@@ -136,7 +136,7 @@ export default function Checkout({ formInitialValues, handleFormClick }) {
                       name="zip"
                       value={values.zip}
                       onChange={handleChange}
-                      isInvalid={!!errors.zip}
+                      isInvalid={errors.zip}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.zip}
@@ -175,7 +175,8 @@ export default function Checkout({ formInitialValues, handleFormClick }) {
                       name="creditCardNumber"
                       value={values.creditCardNumber}
                       onChange={handleChange}
-                      isInvalid={!!errors.creditCardNumber}
+                      maxLength={16}
+                      isInvalid={errors.creditCardNumber}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.creditCardNumber}
@@ -205,7 +206,8 @@ export default function Checkout({ formInitialValues, handleFormClick }) {
                       name="cvv"
                       value={values.cvv}
                       onChange={handleChange}
-                      isInvalid={!!errors.cvv}
+                      maxLength={3}
+                      isInvalid={errors.cvv}
                     />
                     <Form.Control.Feedback type="invalid">
                       {errors.cvv}
