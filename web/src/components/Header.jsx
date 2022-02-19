@@ -7,7 +7,7 @@ import {
 import { useAuth0 } from '@auth0/auth0-react';
 import { search } from '../redux/filters/filter-actions';
 import UserLogin from './authentication/UserLogin';
-import CartDropDown from './cart/CartDropDown';
+import CartDropDown from './cart/CartIcon';
 
 export const Header = ({ searchText }) => {
   const { isAuthenticated, user } = useAuth0();
