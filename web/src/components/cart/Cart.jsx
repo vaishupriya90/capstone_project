@@ -70,11 +70,8 @@ const Cart = ({
 
   const setFormValues = (currCheckoutDetails) => {
     setCheckoutDetails(currCheckoutDetails);
-    console.log(`Current: ${JSON.stringify(currCheckoutDetails)}`);
     handleClick(cartItems);
   };
-
-  console.log(`checkout details outside: ${JSON.stringify(checkoutDetails)}`);
 
   return (
     <>
@@ -90,7 +87,7 @@ const Cart = ({
                 <Col>
                   <ListGroup className="cart-items">
                     {cartItems.map((item) => (
-                      <ListGroupItem key={item.paintingid}>
+                      <ListGroupItem key={item.painting.id}>
                         <Row>
                           <Col lg="2">
                             <img className="cartItemImg" src={item.painting.image} alt={item.painting.name} />

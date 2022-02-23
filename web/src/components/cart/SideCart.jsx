@@ -44,7 +44,7 @@ const SideCart = ({
             <hr />
             <ListGroup className="cart-items">
               {cartItems.map((item) => (
-                <ListGroupItem key={item.paintingid}>
+                <ListGroupItem key={item.painting.id}>
                   <Row>
                     <Col lg="2">
                       <img className="cartItemImg" src={item.painting.image} alt={item.painting.name} />

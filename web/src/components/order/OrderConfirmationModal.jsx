@@ -38,12 +38,9 @@ const OrderConfirmationModal = (props) => {
             }}
           />
           <h4>Thank you for your purchase!</h4>
-          <h5>
+          <h6>
             Your order number is:
             {props.response}
-          </h5>
-          <h6>
-            you will receive an email confirmation with details of the order
           </h6>
         </Modal.Body>
         <Modal.Footer>

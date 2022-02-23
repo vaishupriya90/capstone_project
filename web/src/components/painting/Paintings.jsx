@@ -85,7 +85,7 @@ export const PaintingsComponent = ({
         <Col lg="12" className="products">
 
           {transformPaintings().map((painting) => (
-            <Row>
+            <Row key={painting.id}>
               <Col>
                 <SinglePainting
                   key={painting.id}
