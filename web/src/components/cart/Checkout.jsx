@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import {
-  Row, Col, Form, Button, InputGroup,
+  Row, Col, Form, Button,
 } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';

@@ -77,13 +77,11 @@ describe('cart', () => {
         },
       });
       store.dispatch(addToCart(testPaintings[2]));
-      // await store.dispatch(addToCart(testPaintings[0]));
       console.log(getCartItems(store.getState())[0].quantity);
       store.dispatch(changeQuantity(testPaintings[2], 5));
       console.log(getCartItems(store.getState())[0].quantity);
       const updatedItem = getCartItems(store.getState())
         .filter((p) => p.painting.id === testPaintings[2].id);
-      console.log(updatedItem);
       expect(updatedItem[0].quantity).toBe(5);
     });
   });

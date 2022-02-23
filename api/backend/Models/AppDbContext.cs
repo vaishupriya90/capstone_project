@@ -104,12 +104,12 @@ namespace backend.Models
                 },
                 new
                 {
-                    Id = 9,
-                    Name = "Black bird perched on tree",
-                    Description = "Some Description",
-                    Price = 87.0,
+                    Id = 13,
+                    Name = "Landscape",
+                    Description = "Landscape acrylic painting",
+                    Price = 100.0,
                     AvailableQuantity = 5,
-                    Image = "https://images.unsplash.com/photo-1588522943401-6ba285f692de?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDMwfGJvOGpRS1RhRTBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+                    Image = "https://www.artistichaven.com/wp-content/uploads/2020/09/Easy-Landscape-Paintings-For-Beginners-13-1.jpg"
                 },
                 new
                 {

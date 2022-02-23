@@ -1,5 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {
+  render, screen,
+} from '@testing-library/react';
 import { PaintingsComponent } from './Paintings';
 
 const testPaintings = [
@@ -30,6 +32,7 @@ const testPaintings = [
 ];
 
 const addToCart = jest.fn();
+const removeItem = jest.fn();
 
 const renderTestObject = (customProps = {}) => {
   const props = {
@@ -38,7 +41,7 @@ const renderTestObject = (customProps = {}) => {
     paintingsLoaded: true,
     addItemToCart: addToCart,
     error: false,
-    removeItemFromCart: jest.fn(),
+    removeItemFromCart: removeItem,
     cartItems: [],
     sortType: '',
     sortFunction: jest.fn(),
@@ -60,10 +63,26 @@ test('renders error if fetching the name of the painting fails', async () => {
   expect(await screen.findByText('Oops! Could not fetch the list of paintings!')).toBeInTheDocument();
 });
 
-test('renders a list of paintings', async () => {
+test('add to cart', async () => {
   renderTestObject();
   const button = (await screen.findAllByText('Add to cart'));
   expect(button[0]).toBeInTheDocument();
   button[0].click();
   expect(addToCart).toHaveBeenCalled();
+});
+
+test('remove from cart', async () => {
+  renderTestObject({
+    cartItems: [
+      {
+        painting: testPaintings[0],
+        quantity: 1,
+      },
+    ],
+  });
+
+  const removeButton = (await screen.findByText('Remove'));
+  expect(removeButton).toBeInTheDocument();
+  removeButton.click();
+  expect(removeItem).toHaveBeenCalled();
 });
