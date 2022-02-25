@@ -4,6 +4,10 @@ orbs:
   windows: circleci/windows@2.4.1
 jobs:
   build:
+    filters:
+      branches:
+        only:
+          - circleci-editor/721/heroku
     working_directory: ./api/backend
     description: Build application with Release configuration
     executor:
