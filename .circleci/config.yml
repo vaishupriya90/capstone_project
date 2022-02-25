@@ -4,10 +4,6 @@ orbs:
   windows: circleci/windows@2.4.1
 jobs:
   build:
-    filters:
-      branches:
-        only:
-          - circleci-editor/721/heroku
     working_directory: ./api/backend
     description: Build application with Release configuration
     executor:
@@ -25,6 +21,13 @@ jobs:
           name: "Build Application according to some given configuration"
           command: dotnet.exe build --configuration Release
 workflows:
+  build-and-test:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - circleci-editor/721/heroku
   heroku_deploy:
     jobs:
       - heroku/deploy-via-git
