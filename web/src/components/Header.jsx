@@ -5,7 +5,9 @@ import {
   FormControl, Nav, Navbar, Container,
 } from 'react-bootstrap';
 import { useAuth0 } from '@auth0/auth0-react';
-import { search } from '../redux/filters/filter-actions';
+// import { search } from '../redux/filters/filter-actions';
+import getSearchValue from '../redux/filters/selectors';
+import { searchByValue } from '../redux/filters/filtersSlice';
 import UserLogin from './authentication/UserLogin';
 import CartDropDown from './cart/CartIcon';
 
@@ -43,11 +45,11 @@ export const Header = ({ searchText }) => {
 };
 
 const mapStateToProps = (state) => ({
-  searchValue: state.filters.searchValue,
+  searchValue: getSearchValue(state),
 });
 
 const mapDispatchToProp = (dispatch) => ({
-  searchText: (searchValue) => dispatch(search(searchValue)),
+  searchText: (searchValue) => dispatch(searchByValue(searchValue)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProp)(Header);

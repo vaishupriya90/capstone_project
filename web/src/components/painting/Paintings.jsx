@@ -15,6 +15,7 @@ import {
 import Filters from '../Filters';
 import SinglePainting from './SinglePainting';
 import LoadingDisplay from '../sharedComponents/LoadingDisplay';
+import getSearchValue from '../../redux/filters/selectors';
 
 export const PaintingsComponent = ({
   paintings,
@@ -138,7 +139,7 @@ const mapStateToProps = (state) => ({
   isPaintingsLoading: isGetPaintingsLoading(state),
   error: getPaintingsError(state),
   cartItems: getCartItems(state),
-  searchValue: state.filters.searchValue,
+  searchValue: getSearchValue(state),
 
 });
 
