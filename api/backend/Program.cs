@@ -25,7 +25,7 @@ namespace backend
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("http://the-art-shop-api.herokuapp.com/");
+                    webBuilder.UseUrls("http://the-art-shop-api.herokuapp.com:80/");
                 });
     }
 }
