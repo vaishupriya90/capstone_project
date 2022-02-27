@@ -6,8 +6,8 @@ import {
 } from 'react-bootstrap';
 import { useAuth0 } from '@auth0/auth0-react';
 // import { search } from '../redux/filters/filter-actions';
-import getSearchValue from '../redux/filters/selectors';
-import { searchByValue } from '../redux/filters/filtersSlice';
+import getSearchValue from '../redux/filtersx/selectors';
+import { searchByValue } from '../redux/filtersx/filtersSlice';
 import UserLogin from './authentication/UserLogin';
 import CartDropDown from './cart/CartIcon';
 
