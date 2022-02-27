@@ -26,7 +26,8 @@ namespace backend
                 {
                     var port = Environment.GetEnvironmentVariable("PORT");
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls($"https://*");
+                    // webBuilder.UseUrls($"https://*");
+                    webBuilder.UseUrls("http://the-art-shop-api.herokuapp.com", "https://the-art-shop-api.herokuapp.com");
                     // webBuilder.UseUrls("http://the-art-shop-api.herokuapp.com:80/");
                 });
     }
