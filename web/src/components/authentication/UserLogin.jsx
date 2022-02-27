@@ -30,7 +30,7 @@ const UserLogin = ({ clearCartItems }) => {
           <>
             <Dropdown.Item onClick={() => {
               logout({
-                returnTo: 'http://localhost:3000/',
+                returnTo: 'https://the-art-shop-ui.herokuapp.com/',
               });
               clearCartItems();
             }}
