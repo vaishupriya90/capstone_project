@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import { addToCart, removeFromCart } from '../../redux/cart/cartSlice';
-import { searchByValue } from '../../redux/filters/filtersSlice';
+import { searchByValue } from '../../redux/filtersx/filtersSlice';
 import paintingPropType from '../../propTypes/paintingPropType';
 import { getPaintings } from '../../redux/paintings/paintingsSlice';
 import getCartItems from '../../redux/cart/selectors';
