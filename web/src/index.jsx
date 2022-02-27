@@ -16,7 +16,7 @@ ReactDOM.render(
         <Auth0Provider
           domain="art-shop.us.auth0.com"
           clientId="ocBnWQGH8nFArFk6VJbOTyDqXquU7a6g"
-          redirectUri="http://localhost:3000/paintings"
+          redirectUri="https://the-art-shop-ui.herokuapp.com/paintings"
           cacheLocation="localstorage"
         >
           <App />
