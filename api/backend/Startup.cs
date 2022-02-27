@@ -29,7 +29,9 @@ namespace backend
 
             services.AddDbContext<AppDbContext>(b =>
             {
-                b.UseSqlServer(Configuration.GetConnectionString("SqlDbConnection")); ;
+                //SqlDbConnection config variable set in Heroku.
+                b.UseSqlServer(System.Environment.GetEnvironmentVariable("SqlDbConnection"));
+                // b.UseSqlServer(Configuration.GetConnectionString("SqlDbConnection"));
             }, ServiceLifetime.Transient);
         }
 

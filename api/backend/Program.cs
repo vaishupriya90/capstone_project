@@ -25,7 +25,8 @@ namespace backend
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("http://localhost:5000", "https://localhost:5001");
+                    //Disable the useURLs as heroku will take care of the hosting port 
+                    // webBuilder.UseUrls("http://localhost:5000", "https://localhost:5001");
                 });
     }
 }
