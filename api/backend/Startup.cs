@@ -29,7 +29,7 @@ namespace backend
 
             services.AddDbContext<AppDbContext>(b =>
             {
-                b.UseSqlServer(Configuration.GetConnectionString("SqlDbConnection")); ;
+                b.UseSqlServer(System.Environment.GetEnvironmentVariable("SqlDbConnection"));
             }, ServiceLifetime.Transient);
         }
 
